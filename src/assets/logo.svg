@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <filter id="leather" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise"/>
+      <feDiffuseLighting in="noise" lighting-color="#4a252f" surfaceScale="1" result="light">
+        <feDistantLight azimuth="45" elevation="60"/>
+      </feDiffuseLighting>
+    </filter>
+  </defs>
+  
+  <!-- Background with leather texture -->
+  <rect width="400" height="400" fill="#3d2129"/>
+  
+  <!-- Antler/horn design -->
+  <g transform="translate(200, 160)" fill="none" stroke="#e8dcc8" stroke-width="3" stroke-linecap="round">
+    <!-- Left outer curve -->
+    <path d="M-10,0 Q-80,-30 -120,-80 Q-100,-60 -90,-40"/>
+    <!-- Left middle curve -->
+    <path d="M-10,0 Q-70,-20 -100,-50 Q-85,-35 -75,-20"/>
+    <!-- Left inner curve -->
+    <path d="M-10,0 Q-55,-15 -75,-30 Q-65,-20 -60,-10"/>
+    
+    <!-- Right outer curve -->
+    <path d="M10,0 Q80,-30 120,-80 Q100,-60 90,-40"/>
+    <!-- Right middle curve -->
+    <path d="M10,0 Q70,-20 100,-50 Q85,-35 75,-20"/>
+    <!-- Right inner curve -->
+    <path d="M10,0 Q55,-15 75,-30 Q65,-20 60,-10"/>
+    
+    <!-- Center V shape -->
+    <path d="M-8,15 L0,40 L8,15" fill="none"/>
+    <!-- Stem -->
+    <line x1="0" y1="40" x2="0" y2="65" stroke-width="4"/>
+    <circle cx="0" cy="65" r="5" fill="#e8dcc8" stroke="none"/>
+  </g>
+  
+  <!-- WINE SKIN text -->
+  <text x="200" y="320" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="42" fill="#e8dcc8" letter-spacing="0.15em">WINE SKIN</text>
+</svg>
