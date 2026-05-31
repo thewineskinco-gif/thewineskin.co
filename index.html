@@ -1,16 +1,364 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wineskin - Luxury Leather Goods</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <title>Wineskin - Luxury Leather Goods</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --wine: #6B1A1A;
+            --wine-dark: #4A1010;
+            --beige: #D9C8B0;
+            --beige-light: #EDE3D4;
+            --beige-dark: #B8A48A;
+            --white: #FFFFFF;
+            --off-white: #FAF8F5;
+            --black: #1A1210;
+            --gray: #6B6560;
+            --light-gray: #E8E4DF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Jost', sans-serif; color: var(--black); background: var(--white); line-height: 1.6; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-up { animation: fadeUp 0.8s ease-out forwards; }
+        .fade-up-delay-1 { animation-delay: 0.1s; }
+        .fade-up-delay-2 { animation-delay: 0.2s; }
+        .fade-up-delay-3 { animation-delay: 0.3s; }
+        .fade-up-delay-4 { animation-delay: 0.4s; }
+        .announcement-bar { background: var(--wine); color: var(--beige); text-align: center; padding: 12px 20px; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+        .navbar { position: sticky; top: 0; background: var(--white); height: 72px; border-bottom: 1px solid var(--light-gray); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; z-index: 1000; }
+        .nav-left, .nav-right { display: flex; align-items: center; gap: 32px; flex: 1; }
+        .nav-right { justify-content: flex-end; }
+        .nav-center { position: absolute; left: 50%; transform: translateX(-50%); }
+        .nav-logo { height: 56px; width: auto; }
+        .nav-link { text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; color: var(--black); text-decoration: none; font-weight: 400; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--wine); }
+        .nav-icon { width: 18px; height: 18px; cursor: pointer; transition: transform 0.3s ease; }
+        .nav-icon:hover { transform: scale(1.1); }
+        .nav-icons { display: flex; align-items: center; gap: 20px; }
+        .hero { width: 100%; height: 85vh; min-height: 600px; position: relative; overflow: hidden; display: flex; align-items: center; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=80'); background-size: cover; background-position: center; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(107, 26, 26, 0.82) 0%, rgba(107, 26, 26, 0.4) 50%, transparent 100%); }
+        .hero-content { position: relative; z-index: 2; padding: 0 80px; max-width: 700px; }
+        .hero-eyebrow { color: var(--beige); font-size: 12px; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s ease-out 0.1s forwards; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 92px); font-weight: 300; line-height: 1.1; margin-bottom: 24px; }
+        .hero h1 .italic { color: var(--beige-light); font-style: italic; display: block; opacity: 0; animation: fadeUp 0.8s ease-out 0.2s forwards; }
+        .hero h1 .bold { color: var(--white); font-weight: 400; display: block; opacity: 0; animation: fadeUp 0.8s ease-out 0.3s forwards; }
+        .hero p { color: var(--beige-light); font-size: 14px; max-width: 400px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s ease-out 0.4s forwards; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s ease-out 0.5s forwards; }
+        .btn { padding: 14px 32px; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; font-weight: 400; transition: all 0.3s ease; cursor: pointer; border: none; font-family: 'Jost', sans-serif; }
+        .btn-primary { background: var(--beige); color: var(--wine); }
+        .btn-primary:hover { background: var(--beige-light); }
+        .btn-outline { background: transparent; color: var(--beige); border: 1px solid var(--beige); }
+        .btn-outline:hover { background: var(--beige); color: var(--wine); }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--black); margin-bottom: 16px; }
+        .section-divider { width: 48px; height: 2px; background: var(--wine); margin: 0 auto 16px; }
+        .section-header p { color: var(--gray); font-size: 14px; max-width: 500px; margin: 0 auto; }
+        .categories { padding: 80px 40px; background: var(--white); }
+        .category-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; }
+        .category-card { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
+        .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .category-card:hover img { transform: scale(1.08); }
+        .category-overlay { position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(26, 18, 16, 0.9) 0%, transparent 100%); }
+        .category-label { position: absolute; bottom: 0; left: 0; width: 100%; padding: 32px 24px; text-align: center; }
+        .category-label span { display: block; color: var(--beige); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+        .category-label h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--white); }
+        .featured { padding: 80px 40px; background: var(--off-white); }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto; }
+        .product-card { background: var(--white); transition: box-shadow 0.3s ease; position: relative; }
+        .product-card:hover { box-shadow: 0 8px 32px rgba(107, 26, 26, 0.12); }
+        .product-image-container { position: relative; aspect-ratio: 1; overflow: hidden; }
+        .product-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .product-card:hover .product-image-container img { transform: scale(1.05); }
+        .product-badge { position: absolute; top: 12px; left: 12px; background: var(--wine); color: var(--beige); padding: 6px 12px; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .product-info { padding: 20px; }
+        .product-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--black); margin-bottom: 4px; }
+        .product-category { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 8px; }
+        .product-price { font-size: 16px; color: var(--wine); font-weight: 500; }
+        .banner-strip { background: var(--wine); padding: 64px 80px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 32px; }
+        .banner-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--white); margin-bottom: 12px; }
+        .banner-content h2 em { color: var(--beige); font-style: italic; }
+        .banner-content p { color: var(--beige-dark); font-size: 14px; max-width: 400px; }
+        .banner-btn { background: var(--beige); color: var(--wine); }
+        .banner-btn:hover { background: var(--beige-light); }
+        .craft-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+        .craft-image { background-image: url('https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=900&q=80'); background-size: cover; background-position: center; }
+        .craft-content { background: var(--off-white); padding: 80px 72px; display: flex; flex-direction: column; justify-content: center; }
+        .craft-eyebrow { color: var(--wine); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+        .craft-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--black); margin-bottom: 24px; }
+        .craft-content p { color: var(--gray); font-size: 14px; margin-bottom: 16px; line-height: 1.8; }
+        .craft-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--light-gray); }
+        .stat-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 400; color: var(--wine); margin-bottom: 8px; }
+        .stat-item p { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin: 0; }
+        .testimonials { padding: 80px 40px; background: var(--white); }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .testimonial-card { border: 1px solid var(--light-gray); padding: 36px 32px; }
+        .testimonial-stars { color: var(--wine); font-size: 16px; letter-spacing: 2px; margin-bottom: 20px; }
+        .testimonial-card blockquote { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: var(--black); line-height: 1.6; margin-bottom: 20px; }
+        .testimonial-author { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+        .newsletter { background: var(--beige-light); padding: 80px 40px; text-align: center; }
+        .newsletter h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400; color: var(--black); margin-bottom: 16px; }
+        .newsletter p { color: var(--gray); font-size: 14px; margin-bottom: 32px; max-width: 400px; margin-left: auto; margin-right: auto; }
+        .newsletter-form { display: flex; gap: 12px; justify-content: center; max-width: 500px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 14px 20px; border: none; background: var(--white); font-family: 'Jost', sans-serif; font-size: 14px; outline: none; }
+        .newsletter-form input::placeholder { color: var(--gray); }
+        .newsletter-form button { background: var(--wine); color: var(--beige); padding: 14px 28px; border: none; font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.3s ease; }
+        .newsletter-form button:hover { background: var(--wine-dark); }
+        .footer { background: var(--black); padding: 64px 80px 32px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+        .footer-brand img { height: 48px; margin-bottom: 16px; filter: sepia(1) saturate(0.5) brightness(1.2); }
+        .footer-brand h3 { color: var(--beige); font-size: 18px; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 16px; font-weight: 400; }
+        .footer-brand p { color: var(--gray); font-size: 14px; line-height: 1.7; }
+        .footer-column h4 { color: var(--beige); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 12px; }
+        .footer-column a { color: var(--beige-dark); text-decoration: none; font-size: 14px; transition: color 0.3s ease; }
+        .footer-column a:hover { color: var(--beige); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 32px; border-top: 1px solid rgba(184, 164, 138, 0.2); }
+        .footer-bottom p { color: var(--gray); font-size: 13px; }
+        .footer-social { display: flex; gap: 24px; }
+        .footer-social a { color: var(--beige-dark); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease; }
+        .footer-social a:hover { color: var(--beige); }
+        @media (max-width: 1024px) {
+            .category-grid, .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .craft-split { grid-template-columns: 1fr; }
+            .craft-image { min-height: 300px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 0 20px; }
+            .nav-left .nav-link, .nav-right .nav-link { display: none; }
+            .hero-content { padding: 0 24px; }
+            .category-grid, .product-grid, .testimonial-grid { grid-template-columns: 1fr; }
+            .banner-strip { padding: 48px 24px; flex-direction: column; text-align: center; }
+            .craft-content { padding: 48px 24px; }
+            .craft-stats { grid-template-columns: 1fr; gap: 24px; }
+            .newsletter-form { flex-direction: column; }
+            .footer { padding: 48px 24px 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement-bar">Free shipping on orders above ₹5,000 | Handcrafted in full-grain leather</div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="#" class="nav-link">Women</a>
+            <a href="#" class="nav-link">Men</a>
+            <a href="#" class="nav-link">Accessories</a>
+            <a href="#" class="nav-link">Wallets</a>
+        </div>
+        <div class="nav-center">
+            <img src="src/assets/logo.png" alt="Wineskin" class="nav-logo">
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-link">Collections</a>
+            <a href="#" class="nav-link">About</a>
+            <div class="nav-icons">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M6 6L5 3H2"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">New Collection 2025</p>
+            <h1><span class="italic">It's officially</span><span class="bold">Leather Season</span></h1>
+            <p>Handcrafted from full-grain leather, aged to perfection. Each piece is a testament to the art of slow craftsmanship.</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-primary">Shop Now</a>
+                <a href="#" class="btn btn-outline">View Lookbook</a>
+            </div>
+        </div>
+    </section>
+    <section class="categories">
+        <div class="section-header">
+            <h2>Shop by Category</h2>
+            <div class="section-divider"></div>
+            <p>Explore our curated collection of handcrafted leather goods, each designed to age beautifully with time.</p>
+        </div>
+        <div class="category-grid">
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Bags">
+                <div class="category-overlay"></div>
+                <div class="category-label"><span>Shop</span><h3>Bags</h3></div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Wallets">
+                <div class="category-overlay"></div>
+                <div class="category-label"><span>Shop</span><h3>Wallets</h3></div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=600&q=80" alt="Belts">
+                <div class="category-overlay"></div>
+                <div class="category-label"><span>Shop</span><h3>Belts</h3></div>
+            </div>
+            <div class="category-card">
+                <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80" alt="Accessories">
+                <div class="category-overlay"></div>
+                <div class="category-label"><span>Shop</span><h3>Accessories</h3></div>
+            </div>
+        </div>
+    </section>
+    <section class="featured">
+        <div class="section-header">
+            <h2>Featured Pieces</h2>
+            <div class="section-divider"></div>
+            <p>Handpicked favorites from our latest collection, crafted with intention and designed to last.</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Bordeaux Tote">
+                    <span class="product-badge">New</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Bordeaux Tote</h3>
+                    <p class="product-category">Full-grain leather</p>
+                    <p class="product-price">₹12,500</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80" alt="Slim Bifold">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Slim Bifold</h3>
+                    <p class="product-category">Vegetable tanned</p>
+                    <p class="product-price">₹3,800</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Merlot Crossbody">
+                    <span class="product-badge">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Merlot Crossbody</h3>
+                    <p class="product-category">Pebbled leather</p>
+                    <p class="product-price">₹8,200</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=600&q=80" alt="Artisan Card Case">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Artisan Card Case</h3>
+                    <p class="product-category">Hand-stitched leather</p>
+                    <p class="product-price">₹2,200</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="banner-strip">
+        <div class="banner-content">
+            <h2>Crafted to <em>Last a Lifetime</em></h2>
+            <p>Every piece tells a story of patience, skill, and the enduring beauty of full-grain leather.</p>
+        </div>
+        <a href="#" class="btn banner-btn">Explore the Craft</a>
+    </section>
+    <section class="craft-split">
+        <div class="craft-image"></div>
+        <div class="craft-content">
+            <p class="craft-eyebrow">Our Philosophy</p>
+            <h2>Where Leather Meets Legacy</h2>
+            <p>We believe in the art of slow craftsmanship. Each Wineskin piece is meticulously handcrafted by skilled artisans who understand that true luxury lies in the details. From selecting the finest full-grain hides to the final hand-stitched seam, every step is guided by a commitment to excellence.</p>
+            <p>Our leather is sourced from sustainable tanneries and aged naturally, developing a unique patina that tells your story over time. This is not fast fashion—this is heritage made tangible.</p>
+            <div class="craft-stats">
+                <div class="stat-item"><h3>15+</h3><p>Years of Craft</p></div>
+                <div class="stat-item"><h3>100%</h3><p>Full-Grain</p></div>
+                <div class="stat-item"><h3>5k+</h3><p>Happy Clients</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <div class="section-header">
+            <h2>What Our Clients Say</h2>
+            <div class="section-divider"></div>
+            <p>Stories from those who have made Wineskin a part of their journey.</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <blockquote>"The Bordeaux Tote has been my daily companion for over a year. The way the leather has developed its character is simply beautiful. Worth every rupee."</blockquote>
+                <p class="testimonial-author">Priya M. — Mumbai</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <blockquote>"Finally, a brand that understands quality. My wallet still looks new after two years of daily use. The craftsmanship is evident in every stitch."</blockquote>
+                <p class="testimonial-author">Arjun S. — Delhi</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <blockquote>"I gifted my wife the Merlot Crossbody for our anniversary. She hasn't used any other bag since. Truly exceptional quality and design."</blockquote>
+                <p class="testimonial-author">Rehan K. — Bangalore</p>
+            </div>
+        </div>
+    </section>
+    <section class="newsletter">
+        <h2>Join the Inner Circle</h2>
+        <p>Be the first to know about new collections, exclusive offers, and stories from our workshop.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="src/assets/logo.png" alt="Wineskin">
+                <h3>WINESKIN</h3>
+                <p>Handcrafted luxury leather goods, made with patience and precision. Each piece is designed to tell your story for years to come.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">Women's Bags</a></li>
+                    <li><a href="#">Men's Bags</a></li>
+                    <li><a href="#">Wallets</a></li>
+                    <li><a href="#">Belts</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Our Craft</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Care Instructions</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Wineskin. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="#">Instagram</a>
+                <a href="#">Pinterest</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+    </footer>
+</body>
 </html>
