@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Bag - Wineskin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-loader" id="pageLoader"><div class="loader-text">WINESKIN</div></div>
+    <div id="cursor-dot"></div><div id="cursor-ring"></div>
+    <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
+    <div class="mobile-menu" id="mobileMenu"><svg class="mobile-menu-close" onclick="closeMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><a href="women.html">Women</a><a href="men.html">Men</a><a href="accessories.html">Accessories</a><a href="wallets.html">Wallets</a><a href="collections.html">Collections</a><a href="about.html">About</a></div>
+    <div class="toast" id="toast">Removed from bag</div>
+    <div class="announcement-bar"><div class="marquee-content"><span class="marquee-item">Free shipping on orders above Rs. 5,000</span><span class="marquee-item">Handcrafted in full-grain leather</span></div></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <div class="nav-item"><a href="women.html" class="nav-link">Women</a></div>
+            <div class="nav-item"><a href="men.html" class="nav-link">Men</a></div>
+            <div class="nav-item"><a href="accessories.html" class="nav-link">Accessories</a></div>
+            <div class="nav-item"><a href="wallets.html" class="nav-link">Wallets</a></div>
+        </div>
+        <div class="nav-center"><a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo"></a></div>
+        <div class="nav-right">
+            <a href="collections.html" class="nav-link">Collections</a><a href="about.html" class="nav-link">About</a>
+            <div class="nav-icons">
+                <svg class="nav-icon" onclick="openSearch()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <a href="cart.html" style="position: relative;"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M6 6L5 3H2"></path></svg><span class="nav-icon-badge">0</span></a>
+                <svg class="nav-icon hamburger" onclick="openMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div id="emptyCart" class="cart-empty" style="display: none;">
+            <div class="cart-empty-icon">&#128092;</div>
+            <h2>Your bag is empty</h2>
+            <p>Discover our handcrafted collection and find your perfect piece.</p>
+            <a href="collections.html" class="btn btn-wine">Start Shopping</a>
+        </div>
+        
+        <div id="cartWithItems" class="cart-container" style="display: grid;">
+            <div class="cart-items">
+                <h2>Your Bag (<span id="cartCount">0</span> items)</h2>
+                <div id="cartItems"></div>
+            </div>
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-row"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+                <div class="summary-row"><span>Shipping</span><span id="shipping">FREE</span></div>
+                <div class="summary-row total"><span>Total</span><span id="total">₹0</span></div>
+                <button class="checkout-btn">Proceed to Checkout</button>
+                <a href="collections.html" class="continue-shopping">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand"><img src="logo.png" alt="Wineskin"><h3>WINESKIN</h3><p>Handcrafted luxury leather goods.</p></div>
+            <div class="footer-column"><h4>Shop</h4><ul><li><a href="women.html">Women's Bags</a></li><li><a href="men.html">Men's Bags</a></li><li><a href="wallets.html">Wallets</a></li></ul></div>
+            <div class="footer-column"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li></ul></div>
+            <div class="footer-column"><h4>Help</h4><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Wineskin Leather Goods.</p></div>
+    </footer>
+    <script src="main.js"></script>
+    <script>
+        // Update cart count display
+        document.addEventListener('DOMContentLoaded', () => {
+            const count = getCartCount();
+            document.getElementById('cartCount').textContent = count;
+        });
+    </script>
+</body>
+</html>

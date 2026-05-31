@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Collections - Wineskin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-loader" id="pageLoader"><div class="loader-text">WINESKIN</div></div>
+    <div id="cursor-dot"></div><div id="cursor-ring"></div>
+    <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
+    <div class="mobile-menu" id="mobileMenu"><svg class="mobile-menu-close" onclick="closeMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><a href="women.html">Women</a><a href="men.html">Men</a><a href="accessories.html">Accessories</a><a href="wallets.html">Wallets</a><a href="collections.html">Collections</a><a href="about.html">About</a></div>
+    <div class="toast" id="toast">Added to your bag ✓</div>
+    <div class="announcement-bar"><div class="marquee-content"><span class="marquee-item">Free shipping on orders above Rs. 5,000</span><span class="marquee-item">Handcrafted in full-grain leather</span></div></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <div class="nav-item"><a href="women.html" class="nav-link">Women</a></div>
+            <div class="nav-item"><a href="men.html" class="nav-link">Men</a></div>
+            <div class="nav-item"><a href="accessories.html" class="nav-link">Accessories</a></div>
+            <div class="nav-item"><a href="wallets.html" class="nav-link">Wallets</a></div>
+        </div>
+        <div class="nav-center"><a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo"></a></div>
+        <div class="nav-right">
+            <a href="collections.html" class="nav-link active">Collections</a><a href="about.html" class="nav-link">About</a>
+            <div class="nav-icons">
+                <svg class="nav-icon" onclick="openSearch()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <a href="cart.html" style="position: relative;"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M6 6L5 3H2"></path></svg><span class="nav-icon-badge">0</span></a>
+                <svg class="nav-icon hamburger" onclick="openMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Collection Features -->
+    <section style="padding-top: 48px;">
+        <div class="section-header fade-up"><h2>Our Collections</h2><div class="section-divider"></div><p>Explore our curated collections, each telling a unique story of craftsmanship and design.</p></div>
+        
+        <div class="collection-feature">
+            <div class="collection-feature-image" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900&q=80');"></div>
+            <div class="collection-feature-content fade-up">
+                <h2>The Bordeaux Edit</h2>
+                <p class="item-count">12 items</p>
+                <p>Our signature wine-red leather collection. Rich, bold, and timeless pieces that make a statement wherever you go. Each piece is dyed with natural pigments and finished by hand.</p>
+                <a href="women.html" class="btn btn-wine">View Collection &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="collection-feature">
+            <div class="collection-feature-image" style="background-image: url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=900&q=80');"></div>
+            <div class="collection-feature-content fade-up">
+                <h2>The Naturale Collection</h2>
+                <p class="item-count">8 items</p>
+                <p>Vegetable-tanned leather in its purest form. This collection celebrates the natural beauty of full-grain leather, allowing each piece to develop a unique patina over time.</p>
+                <a href="men.html" class="btn btn-wine">View Collection &rarr;</a>
+            </div>
+        </div>
+        
+        <div class="collection-feature">
+            <div class="collection-feature-image" style="background-image: url('https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=900&q=80');"></div>
+            <div class="collection-feature-content fade-up">
+                <h2>The Noir Series</h2>
+                <p class="item-count">15 items</p>
+                <p>Sophisticated black leather essentials for the modern professional. Understated elegance meets uncompromising quality in every stitch.</p>
+                <a href="men.html" class="btn btn-wine">View Collection &rarr;</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- New Arrivals -->
+    <section class="featured">
+        <div class="section-header fade-up"><h2>New Arrivals</h2><div class="section-divider"></div><p>The latest additions to our workshop.</p></div>
+        <div class="product-grid">
+            <div class="product-card fade-up">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Bordeaux Tote"><span class="product-badge">New</span><div class="quick-view" onclick="openQuickView(1)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Bordeaux Tote</h3><p class="product-category">Totes</p><p class="product-price">₹12,500</p><button class="add-to-bag" onclick="addToCart({id: 1, name: 'Bordeaux Tote', price: 12500, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', category: 'Totes'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80" alt="Weekend Duffel"><span class="product-badge">New</span><div class="quick-view" onclick="openQuickView(11)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Weekend Duffel</h3><p class="product-category">Duffels</p><p class="product-price">₹22,000</p><button class="add-to-bag" onclick="addToCart({id: 11, name: 'Weekend Duffel', price: 22000, image: 'https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80', category: 'Duffels'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80" alt="Evening Clutch"><span class="product-badge">New</span><div class="quick-view" onclick="openQuickView(3)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Evening Clutch</h3><p class="product-category">Clutches</p><p class="product-price">₹6,500</p><button class="add-to-bag" onclick="addToCart({id: 3, name: 'Evening Clutch', price: 6500, image: 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80', category: 'Clutches'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80" alt="Portfolio Bag"><span class="product-badge">New</span><div class="quick-view" onclick="openQuickView(14)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Portfolio Bag</h3><p class="product-category">Briefcases</p><p class="product-price">₹16,800</p><button class="add-to-bag" onclick="addToCart({id: 14, name: 'Portfolio Bag', price: 16800, image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80', category: 'Briefcases'})">Add to Bag</button></div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand"><img src="logo.png" alt="Wineskin"><h3>WINESKIN</h3><p>Handcrafted luxury leather goods.</p></div>
+            <div class="footer-column"><h4>Shop</h4><ul><li><a href="women.html">Women's Bags</a></li><li><a href="men.html">Men's Bags</a></li><li><a href="wallets.html">Wallets</a></li><li><a href="accessories.html">Accessories</a></li></ul></div>
+            <div class="footer-column"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div class="footer-column"><h4>Help</h4><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Wineskin Leather Goods.</p></div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -7,1224 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --wine: #6B1A1A;
-            --wine-dark: #4A1010;
-            --beige: #D9C8B0;
-            --beige-light: #EDE3D4;
-            --black: #1A1210;
-            --gray: #6B6560;
-            --off-white: #FAF8F5;
-            --light-gray: #E8E4DF;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-        @media (pointer: coarse) {
-            * { cursor: auto; }
-        }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Jost', sans-serif; 
-            color: var(--black); 
-            background: var(--off-white); 
-            line-height: 1.6; 
-            overflow-x: hidden;
-        }
-        
-        /* Page Loader */
-        .page-loader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--wine);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-        .page-loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            font-weight: 300;
-            color: var(--beige);
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            animation: loaderPulse 1.5s ease-out forwards;
-        }
-        @keyframes loaderPulse {
-            0% { opacity: 0; transform: scale(0.9); }
-            30% { opacity: 1; transform: scale(1); }
-            70% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(1.05); }
-        }
-        
-        /* Premium Custom Cursor */
-        #cursor-dot {
-            position: fixed;
-            width: 6px;
-            height: 6px;
-            background: #D9C8B0;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background 0.2s;
-        }
-        #cursor-ring {
-            position: fixed;
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid #6B1A1A;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, border-width 0.2s, background 0.2s, transform 0.08s ease-out;
-        }
-        #cursor-dot.hover {
-            width: 10px;
-            height: 10px;
-        }
-        #cursor-ring.hover {
-            width: 56px;
-            height: 56px;
-            border-width: 2px;
-            background: rgba(107, 26, 26, 0.08);
-        }
-        #cursor-dot.clicking {
-            transform: translate(-50%, -50%) scale(0.8);
-        }
-        #cursor-ring.clicking {
-            transform: translate(-50%, -50%) scale(0.75);
-        }
-        #cursor-dot.hidden, #cursor-ring.hidden {
-            opacity: 0;
-        }
-        @media (pointer: coarse) {
-            #cursor-dot, #cursor-ring { display: none; }
-        }
-        
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
-        
-        .fade-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Announcement Bar */
-        .announcement-bar {
-            background: var(--wine);
-            overflow: hidden;
-            height: 40px;
-            display: flex;
-            align-items: center;
-        }
-        .marquee-content {
-            display: flex;
-            animation: marquee 30s linear infinite;
-            white-space: nowrap;
-        }
-        .marquee-item {
-            color: var(--beige);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 0 40px;
-            font-weight: 400;
-        }
-        
-        /* Navigation */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background: white;
-            height: 72px;
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        .navbar.scrolled {
-            height: 60px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-        }
-        .nav-left, .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            flex: 1;
-        }
-        .nav-right { justify-content: flex-end; }
-        .nav-center {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .nav-logo { height: 56px; width: auto; transition: height 0.3s ease; }
-        .navbar.scrolled .nav-logo { height: 48px; }
-        
-        .nav-item { position: relative; }
-        .nav-link {
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            color: var(--black);
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            padding: 24px 0;
-            display: block;
-        }
-        .nav-link:hover { color: var(--wine); }
-        
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 220px;
-            padding: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .dropdown-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            color: var(--wine);
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        .dropdown a {
-            display: block;
-            padding: 8px 0;
-            color: var(--gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-        .dropdown a:hover { color: var(--wine); }
-        
-        .nav-icons {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        .nav-icon {
-            width: 20px; height: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease, color 0.3s ease;
-            position: relative;
-        }
-        .nav-icon:hover { transform: scale(1.1); color: var(--wine); }
-        .nav-icon-badge {
-            position: absolute;
-            top: -6px; right: -6px;
-            background: var(--wine);
-            color: var(--beige);
-            font-size: 10px;
-            width: 18px; height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 500;
-        }
-        
-        .hamburger { display: none; }
-        
-        /* Search Overlay */
-        .search-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(26, 18, 16, 0.95);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-        .search-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .search-container {
-            width: 90%;
-            max-width: 700px;
-            position: relative;
-        }
-        .search-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid var(--beige);
-            padding: 20px 0;
-            font-size: 32px;
-            color: white;
-            font-family: 'Cormorant Garamond', serif;
-            outline: none;
-        }
-        .search-input::placeholder { color: var(--gray); }
-        .search-close {
-            position: absolute;
-            top: -60px; right: 0;
-            color: var(--beige);
-            font-size: 36px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .search-close:hover { color: white; }
-        
-        /* Cart Drawer */
-        .cart-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1500;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .cart-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .cart-drawer {
-            position: fixed;
-            top: 0; right: 0;
-            width: 420px;
-            max-width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 1501;
-            transform: translateX(100%);
-            transition: transform 0.4s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .cart-drawer.active { transform: translateX(0); }
-        .cart-header {
-            padding: 24px;
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            font-weight: 400;
-        }
-        .cart-close {
-            width: 24px; height: 24px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        .cart-close:hover { transform: rotate(90deg); }
-        .cart-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px;
-        }
-        .cart-item {
-            display: flex;
-            gap: 16px;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        .cart-item-image {
-            width: 80px; height: 80px;
-            object-fit: cover;
-            background: var(--light-gray);
-        }
-        .cart-item-details { flex: 1; }
-        .cart-item-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-        .cart-item-price {
-            color: var(--wine);
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-        .cart-item-qty {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .qty-btn {
-            width: 28px; height: 28px;
-            border: 1px solid var(--light-gray);
-            background: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        .qty-btn:hover {
-            background: var(--wine);
-            color: white;
-            border-color: var(--wine);
-        }
-        .cart-item-remove {
-            color: var(--gray);
-            font-size: 12px;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 8px;
-            display: inline-block;
-        }
-        .cart-item-remove:hover { color: var(--wine); }
-        .cart-footer {
-            padding: 24px;
-            border-top: 1px solid var(--light-gray);
-        }
-        .cart-subtotal {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            font-size: 16px;
-        }
-        .cart-subtotal span:last-child { font-weight: 500; }
-        .checkout-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--wine);
-            color: var(--beige);
-            border: none;
-            font-family: 'Jost', sans-serif;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .checkout-btn:hover { background: var(--wine-dark); }
-        
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: white;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            padding: 80px 40px;
-        }
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .mobile-menu-close {
-            position: absolute;
-            top: 24px; right: 24px;
-            width: 28px; height: 28px;
-            cursor: pointer;
-        }
-        .mobile-menu a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 32px;
-            color: var(--black);
-            text-decoration: none;
-            padding: 16px 0;
-            border-bottom: 1px solid var(--light-gray);
-            transition: color 0.3s ease;
-        }
-        .mobile-menu a:hover { color: var(--wine); }
-        
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 24px; right: 24px;
-            background: var(--wine);
-            color: var(--beige);
-            padding: 16px 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            z-index: 3000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hero Section */
-        .hero {
-            width: 100%;
-            height: 90vh;
-            min-height: 700px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(to right, rgba(107, 26, 26, 0.85) 0%, rgba(107, 26, 26, 0.4) 50%, transparent 100%);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 80px;
-            max-width: 700px;
-        }
-        .hero-eyebrow {
-            color: var(--beige);
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 0.2s forwards;
-        }
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            margin-bottom: 24px;
-        }
-        .hero h1 .italic {
-            color: var(--beige-light);
-            font-style: italic;
-            display: block;
-            font-size: clamp(36px, 5vw, 52px);
-            font-weight: 400;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 0.4s forwards;
-        }
-        .hero h1 .bold {
-            color: white;
-            font-weight: 300;
-            display: block;
-            font-size: clamp(56px, 8vw, 88px);
-            line-height: 1.1;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 0.5s forwards;
-        }
-        .hero p {
-            color: var(--beige-light);
-            font-size: 14px;
-            max-width: 420px;
-            line-height: 1.9;
-            margin-bottom: 32px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 0.6s forwards;
-        }
-        .hero-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 0.8s forwards;
-        }
-        .btn {
-            padding: 16px 36px;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            font-weight: 400;
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: none;
-            font-family: 'Jost', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary {
-            background: var(--beige);
-            color: var(--wine);
-        }
-        .btn-primary:hover {
-            background: white;
-            color: var(--wine);
-        }
-        .btn-outline {
-            background: transparent;
-            color: var(--beige);
-            border: 1px solid var(--beige);
-        }
-        .btn-outline:hover {
-            background: var(--beige);
-            color: var(--wine);
-        }
-        .btn-underline::after {
-            content: '';
-            position: absolute;
-            bottom: 12px;
-            left: 36px;
-            width: 0;
-            height: 2px;
-            background: var(--wine);
-            transition: width 0.4s ease;
-        }
-        .btn-underline:hover::after { width: calc(100% - 72px); }
-        
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            opacity: 0;
-            animation: fadeUp 0.8s ease-out 1s forwards;
-        }
-        .scroll-indicator .dot {
-            width: 8px; height: 8px;
-            background: var(--beige);
-            border-radius: 50%;
-            animation: bounce 1.5s ease infinite;
-        }
-        .scroll-indicator .line {
-            width: 1px;
-            height: 40px;
-            background: var(--beige);
-            opacity: 0.5;
-        }
-        
-        /* Section Headers */
-        .section-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .section-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            font-weight: 400;
-            color: var(--black);
-            margin-bottom: 16px;
-        }
-        .section-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--wine);
-            margin: 0 auto 16px;
-        }
-        .section-header p {
-            color: var(--gray);
-            font-size: 14px;
-            max-width: 500px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
-        /* Categories */
-        .categories {
-            padding: 100px 48px;
-            background: white;
-        }
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .category-card {
-            position: relative;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .category-card img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .category-card:hover img { transform: scale(1.08); }
-        .category-overlay {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 60%;
-            background: linear-gradient(to top, rgba(26, 18, 16, 0.9) 0%, transparent 100%);
-            transition: background 0.4s ease;
-        }
-        .category-card:hover .category-overlay {
-            background: linear-gradient(to top, rgba(26, 18, 16, 0.95) 0%, rgba(26, 18, 16, 0.3) 100%);
-        }
-        .category-label {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%;
-            padding: 32px 24px;
-            text-align: center;
-        }
-        .category-label span {
-            display: block;
-            color: var(--beige);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-        .category-label h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-weight: 400;
-            color: white;
-        }
-        .category-btn {
-            position: absolute;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--wine);
-            color: var(--beige);
-            padding: 12px 24px;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: all 0.4s ease;
-            opacity: 0;
-        }
-        .category-card:hover .category-btn {
-            bottom: 100px;
-            opacity: 1;
-        }
-        
-        /* Featured Products */
-        .featured {
-            padding: 100px 48px;
-            background: var(--off-white);
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .product-card {
-            background: white;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .product-card:hover {
-            box-shadow: 0 12px 40px rgba(107, 26, 26, 0.12);
-            transform: translateY(-4px);
-        }
-        .product-image-container {
-            position: relative;
-            aspect-ratio: 1;
-            overflow: hidden;
-        }
-        .product-image-container img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .product-card:hover .product-image-container img { transform: scale(1.05); }
-        .product-badge {
-            position: absolute;
-            top: 12px; left: 12px;
-            background: var(--wine);
-            color: var(--beige);
-            padding: 6px 12px;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .quick-view {
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            padding: 16px;
-            background: rgba(26, 18, 16, 0.8);
-            color: white;
-            text-align: center;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-        .product-card:hover .quick-view { bottom: 0; }
-        .product-info { padding: 24px; }
-        .product-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            font-weight: 400;
-            color: var(--black);
-            margin-bottom: 4px;
-        }
-        .product-category {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray);
-            margin-bottom: 12px;
-        }
-        .product-price {
-            font-size: 16px;
-            color: var(--wine);
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-        .add-to-bag {
-            width: 100%;
-            padding: 14px;
-            background: var(--wine);
-            color: var(--beige);
-            border: 1px solid var(--wine);
-            font-family: 'Jost', sans-serif;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .add-to-bag:hover {
-            background: transparent;
-            color: var(--wine);
-        }
-        
-        /* Banner Strip */
-        .banner-strip {
-            background: var(--wine);
-            padding: 64px 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 32px;
-        }
-        .banner-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
-            font-weight: 400;
-            color: white;
-            margin-bottom: 12px;
-        }
-        .banner-content h2 em {
-            color: var(--beige);
-            font-style: italic;
-        }
-        .banner-content p {
-            color: rgba(217, 200, 176, 0.8);
-            font-size: 14px;
-            max-width: 400px;
-            line-height: 1.7;
-        }
-        .banner-btn {
-            background: var(--beige);
-            color: var(--wine);
-        }
-        .banner-btn:hover {
-            background: var(--beige-light);
-            color: var(--wine);
-        }
-        
-        /* Craft Section */
-        .craft-split {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 560px;
-        }
-        .craft-image {
-            background-image: url('https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=900&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .craft-content {
-            background: var(--off-white);
-            padding: 80px 72px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .craft-eyebrow {
-            color: var(--wine);
-            font-size: 12px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-        .craft-content h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
-            font-weight: 400;
-            color: var(--black);
-            margin-bottom: 24px;
-        }
-        .craft-content p {
-            color: var(--gray);
-            font-size: 15px;
-            margin-bottom: 16px;
-            line-height: 1.9;
-        }
-        .craft-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid var(--light-gray);
-        }
-        .stat-item h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 40px;
-            font-weight: 400;
-            color: var(--wine);
-            margin-bottom: 8px;
-        }
-        .stat-item p {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray);
-            margin: 0;
-        }
-        
-        /* Marquee Strip */
-        .marquee-strip {
-            background: var(--wine-dark);
-            padding: 24px 0;
-            overflow: hidden;
-        }
-        .marquee-text {
-            display: flex;
-            animation: marquee 30s linear infinite;
-            white-space: nowrap;
-        }
-        .marquee-text span {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-style: italic;
-            color: var(--beige);
-            letter-spacing: 3px;
-            padding: 0 24px;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 48px;
-            background: white;
-        }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .testimonial-card {
-            border: 1px solid var(--light-gray);
-            padding: 36px;
-            transition: all 0.3s ease;
-        }
-        .testimonial-card:hover {
-            border-color: var(--wine);
-            box-shadow: 0 8px 24px rgba(107, 26, 26, 0.08);
-        }
-        .testimonial-stars {
-            color: var(--wine);
-            font-size: 16px;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-        .testimonial-card blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            font-style: italic;
-            color: var(--black);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .testimonial-author {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray);
-        }
-        
-        /* Instagram Grid */
-        .instagram {
-            padding: 100px 48px;
-            background: var(--off-white);
-        }
-        .instagram-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 16px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .instagram-item {
-            position: relative;
-            aspect-ratio: 1;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .instagram-item img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .instagram-item:hover img { transform: scale(1.05); }
-        .instagram-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(107, 26, 26, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .instagram-item:hover .instagram-overlay { opacity: 1; }
-        .instagram-overlay svg {
-            width: 32px; height: 32px;
-            color: var(--beige);
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            background: var(--beige-light);
-            padding: 72px 48px;
-            text-align: center;
-        }
-        .newsletter h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            font-weight: 400;
-            color: var(--black);
-            margin-bottom: 16px;
-        }
-        .newsletter p {
-            color: var(--gray);
-            font-size: 15px;
-            margin-bottom: 32px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .newsletter-form {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .newsletter-form input {
-            flex: 1;
-            padding: 16px 24px;
-            border: 1px solid var(--beige);
-            background: white;
-            font-family: 'Jost', sans-serif;
-            font-size: 14px;
-            outline: none;
-        }
-        .newsletter-form input::placeholder { color: var(--gray); }
-        .newsletter-form button {
-            background: var(--wine);
-            color: var(--beige);
-            padding: 16px 32px;
-            border: none;
-            font-family: 'Jost', sans-serif;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .newsletter-form button:hover { background: var(--wine-dark); }
-        .newsletter-success {
-            color: var(--wine);
-            font-size: 16px;
-            margin-top: 16px;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .newsletter-success.show { opacity: 1; }
-        
-        /* Footer */
-        .footer {
-            background: var(--black);
-            padding: 64px 80px 32px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-        .footer-brand img {
-            height: 72px;
-            margin-bottom: 16px;
-            filter: brightness(0) saturate(100%) invert(84%) sepia(15%) saturate(394%) hue-rotate(352deg) brightness(94%) contrast(91%);
-        }
-        .footer-brand h3 {
-            color: var(--beige);
-            font-size: 18px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            font-weight: 400;
-        }
-        .footer-brand p {
-            color: rgba(217, 200, 176, 0.7);
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-        .footer-social {
-            display: flex;
-            gap: 16px;
-        }
-        .footer-social a {
-            width: 40px; height: 40px;
-            border: 1px solid rgba(217, 200, 176, 0.3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--beige);
-            transition: all 0.3s ease;
-        }
-        .footer-social a:hover {
-            background: var(--wine);
-            border-color: var(--wine);
-        }
-        .footer-social svg {
-            width: 18px; height: 18px;
-        }
-        .footer-column h4 {
-            color: var(--beige);
-            font-size: 12px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            font-weight: 500;
-        }
-        .footer-column ul { list-style: none; }
-        .footer-column li { margin-bottom: 12px; }
-        .footer-column a {
-            color: rgba(217, 200, 176, 0.7);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-        .footer-column a:hover { color: var(--beige); }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 32px;
-            border-top: 1px solid rgba(217, 200, 176, 0.2);
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .footer-bottom p {
-            color: rgba(217, 200, 176, 0.5);
-            font-size: 13px;
-        }
-        .footer-bottom-links {
-            display: flex;
-            gap: 24px;
-        }
-        .footer-bottom-links a {
-            color: rgba(217, 200, 176, 0.5);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color 0.3s ease;
-        }
-        .footer-bottom-links a:hover { color: var(--beige); }
-        
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .category-grid, .product-grid { grid-template-columns: repeat(2, 1fr); }
-            .craft-split { grid-template-columns: 1fr; }
-            .craft-image { min-height: 300px; }
-            .instagram-grid { grid-template-columns: repeat(3, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 768px) {
-            .navbar { padding: 0 20px; }
-            .nav-left .nav-link, .nav-right .nav-link { display: none; }
-            .hamburger { display: block; }
-            .hero { height: auto; min-height: 600px; }
-            .hero-content { padding: 0 24px; }
-            .hero-buttons { flex-direction: column; }
-            .hero h1 .italic { font-size: 32px; }
-            .hero h1 .bold { font-size: 48px; }
-            .scroll-indicator { left: 24px; }
-            .category-grid, .product-grid, .testimonial-grid { grid-template-columns: 1fr; }
-            .categories, .featured, .testimonials { padding: 60px 24px; }
-            .banner-strip { padding: 48px 24px; flex-direction: column; text-align: center; }
-            .banner-content h2 { font-size: 32px; }
-            .craft-content { padding: 48px 24px; }
-            .craft-stats { grid-template-columns: 1fr; gap: 24px; }
-            .instagram-grid { grid-template-columns: repeat(2, 1fr); }
-            .newsletter-form { flex-direction: column; }
-            .footer { padding: 48px 24px 24px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            .footer-bottom { flex-direction: column; text-align: center; }
-            .cart-drawer { width: 100%; }
-            .section-header h2 { font-size: 36px; }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Page Loader -->
@@ -1244,52 +27,20 @@
         </div>
     </div>
     
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
-    
-    <!-- Cart Drawer -->
-    <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-header">
-            <h2>Your Bag</h2>
-            <svg class="cart-close" onclick="closeCart()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-        </div>
-        <div class="cart-body" id="cartBody">
-            <div class="cart-item">
-                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200&q=80" class="cart-item-image" alt="Bordeaux Tote">
-                <div class="cart-item-details">
-                    <div class="cart-item-name">Bordeaux Tote</div>
-                    <div class="cart-item-price">Rs. 12,500</div>
-                    <div class="cart-item-qty">
-                        <button class="qty-btn" onclick="updateQty(0, -1)">-</button>
-                        <span id="qty-0">1</span>
-                        <button class="qty-btn" onclick="updateQty(0, 1)">+</button>
-                    </div>
-                    <span class="cart-item-remove" onclick="removeItem(0)">Remove</span>
-                </div>
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeQuickView()">&times;</button>
+            <div class="modal-image">
+                <img src="" alt="">
             </div>
-            <div class="cart-item">
-                <img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=200&q=80" class="cart-item-image" alt="Slim Bifold">
-                <div class="cart-item-details">
-                    <div class="cart-item-name">Slim Bifold</div>
-                    <div class="cart-item-price">Rs. 3,800</div>
-                    <div class="cart-item-qty">
-                        <button class="qty-btn" onclick="updateQty(1, -1)">-</button>
-                        <span id="qty-1">1</span>
-                        <button class="qty-btn" onclick="updateQty(1, 1)">+</button>
-                    </div>
-                    <span class="cart-item-remove" onclick="removeItem(1)">Remove</span>
-                </div>
+            <div class="modal-details">
+                <h2></h2>
+                <p class="category"></p>
+                <p class="price"></p>
+                <p>Handcrafted from premium full-grain leather with attention to every detail.</p>
+                <button class="btn btn-wine add-to-bag-btn" style="width: 100%; margin-top: auto;">Add to Bag</button>
             </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-subtotal">
-                <span>Subtotal</span>
-                <span id="cartSubtotal">Rs. 16,300</span>
-            </div>
-            <button class="checkout-btn">Checkout</button>
         </div>
     </div>
     
@@ -1299,12 +50,12 @@
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
-        <a href="#" onclick="closeMobileMenu()">Women</a>
-        <a href="#" onclick="closeMobileMenu()">Men</a>
-        <a href="#" onclick="closeMobileMenu()">Accessories</a>
-        <a href="#" onclick="closeMobileMenu()">Wallets</a>
-        <a href="#" onclick="closeMobileMenu()">Collections</a>
-        <a href="#" onclick="closeMobileMenu()">About</a>
+        <a href="women.html" onclick="closeMobileMenu()">Women</a>
+        <a href="men.html" onclick="closeMobileMenu()">Men</a>
+        <a href="accessories.html" onclick="closeMobileMenu()">Accessories</a>
+        <a href="wallets.html" onclick="closeMobileMenu()">Wallets</a>
+        <a href="collections.html" onclick="closeMobileMenu()">Collections</a>
+        <a href="about.html" onclick="closeMobileMenu()">About</a>
     </div>
     
     <!-- Toast -->
@@ -1328,52 +79,52 @@
     <nav class="navbar" id="navbar">
         <div class="nav-left">
             <div class="nav-item">
-                <a href="#" class="nav-link">Women</a>
+                <a href="women.html" class="nav-link">Women</a>
                 <div class="dropdown">
                     <div class="dropdown-title">Women</div>
-                    <a href="#">Totes</a>
-                    <a href="#">Clutches</a>
-                    <a href="#">Crossbody</a>
-                    <a href="#">Sling Bags</a>
+                    <a href="women.html">Totes</a>
+                    <a href="women.html">Clutches</a>
+                    <a href="women.html">Crossbody</a>
+                    <a href="women.html">Sling Bags</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">Men</a>
+                <a href="men.html" class="nav-link">Men</a>
                 <div class="dropdown">
                     <div class="dropdown-title">Men</div>
-                    <a href="#">Briefcases</a>
-                    <a href="#">Messenger Bags</a>
-                    <a href="#">Backpacks</a>
-                    <a href="#">Duffles</a>
+                    <a href="men.html">Briefcases</a>
+                    <a href="men.html">Messenger Bags</a>
+                    <a href="men.html">Backpacks</a>
+                    <a href="men.html">Duffles</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">Accessories</a>
+                <a href="accessories.html" class="nav-link">Accessories</a>
                 <div class="dropdown">
                     <div class="dropdown-title">Accessories</div>
-                    <a href="#">Keychains</a>
-                    <a href="#">Passport Holders</a>
-                    <a href="#">Laptop Sleeves</a>
-                    <a href="#">Watch Rolls</a>
+                    <a href="accessories.html">Keychains</a>
+                    <a href="accessories.html">Passport Holders</a>
+                    <a href="accessories.html">Laptop Sleeves</a>
+                    <a href="accessories.html">Watch Rolls</a>
                 </div>
             </div>
             <div class="nav-item">
-                <a href="#" class="nav-link">Wallets</a>
+                <a href="wallets.html" class="nav-link">Wallets</a>
                 <div class="dropdown">
                     <div class="dropdown-title">Wallets</div>
-                    <a href="#">Bifold</a>
-                    <a href="#">Card Cases</a>
-                    <a href="#">Zip Around</a>
-                    <a href="#">Money Clips</a>
+                    <a href="wallets.html">Bifold</a>
+                    <a href="wallets.html">Card Cases</a>
+                    <a href="wallets.html">Zip Around</a>
+                    <a href="wallets.html">Money Clips</a>
                 </div>
             </div>
         </div>
         <div class="nav-center">
-            <img src="logo.png" alt="Wineskin" class="nav-logo">
+            <a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo"></a>
         </div>
         <div class="nav-right">
-            <a href="#" class="nav-link">Collections</a>
-            <a href="#" class="nav-link">About</a>
+            <a href="collections.html" class="nav-link">Collections</a>
+            <a href="about.html" class="nav-link">About</a>
             <div class="nav-icons">
                 <svg class="nav-icon" onclick="openSearch()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -1382,12 +133,15 @@
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                 </svg>
-                <svg class="nav-icon" onclick="openCart()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 6h15l-1.5 9h-12z"></path>
-                    <circle cx="9" cy="20" r="1"></circle>
-                    <circle cx="18" cy="20" r="1"></circle>
-                    <path d="M6 6L5 3H2"></path>
-                </svg>
+                <a href="cart.html" style="position: relative;">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 6h15l-1.5 9h-12z"></path>
+                        <circle cx="9" cy="20" r="1"></circle>
+                        <circle cx="18" cy="20" r="1"></circle>
+                        <path d="M6 6L5 3H2"></path>
+                    </svg>
+                    <span class="nav-icon-badge">0</span>
+                </a>
                 <svg class="nav-icon hamburger" onclick="openMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
                     <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -1399,7 +153,7 @@
     
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=80');"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="hero-eyebrow">New Collection 2025</p>
@@ -1407,10 +161,10 @@
                 <span class="italic">It is officially</span>
                 <span class="bold">Leather Season</span>
             </h1>
-            <p>Handcrafted from full-grain leather, aged to perfection. Each piece is a testament to the art of slow craftsmanship, designed to accompany you through life is most meaningful moments.</p>
+            <p>Handcrafted from full-grain leather, aged to perfection. Each piece is a testament to the art of slow craftsmanship, designed to accompany you through life's most meaningful moments.</p>
             <div class="hero-buttons">
-                <a href="#categories" class="btn btn-primary btn-underline">Shop Now</a>
-                <a href="#" class="btn btn-outline">View Lookbook</a>
+                <a href="collections.html" class="btn btn-primary btn-underline">Shop Now</a>
+                <a href="about.html" class="btn btn-outline">View Lookbook</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -1434,7 +188,7 @@
                     <span>Shop</span>
                     <h3>Bags</h3>
                 </div>
-                <a href="#" class="category-btn">Shop Now &rarr;</a>
+                <a href="women.html" class="category-btn">Shop Now &rarr;</a>
             </div>
             <div class="category-card fade-up">
                 <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Wallets">
@@ -1443,7 +197,7 @@
                     <span>Shop</span>
                     <h3>Wallets</h3>
                 </div>
-                <a href="#" class="category-btn">Shop Now &rarr;</a>
+                <a href="wallets.html" class="category-btn">Shop Now &rarr;</a>
             </div>
             <div class="category-card fade-up">
                 <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=600&q=80" alt="Belts">
@@ -1452,7 +206,7 @@
                     <span>Shop</span>
                     <h3>Belts</h3>
                 </div>
-                <a href="#" class="category-btn">Shop Now &rarr;</a>
+                <a href="men.html" class="category-btn">Shop Now &rarr;</a>
             </div>
             <div class="category-card fade-up">
                 <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80" alt="Accessories">
@@ -1461,7 +215,7 @@
                     <span>Shop</span>
                     <h3>Accessories</h3>
                 </div>
-                <a href="#" class="category-btn">Shop Now &rarr;</a>
+                <a href="accessories.html" class="category-btn">Shop Now &rarr;</a>
             </div>
         </div>
     </section>
@@ -1478,50 +232,50 @@
                 <div class="product-image-container">
                     <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Bordeaux Tote">
                     <span class="product-badge">New</span>
-                    <div class="quick-view">Quick View</div>
+                    <div class="quick-view" onclick="openQuickView(1)">Quick View</div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Bordeaux Tote</h3>
                     <p class="product-category">Full-grain leather</p>
                     <p class="product-price">Rs. 12,500</p>
-                    <button class="add-to-bag" onclick="addToBag('Bordeaux Tote', 12500)">Add to Bag</button>
+                    <button class="add-to-bag" onclick="addToCart({id: 1, name: 'Bordeaux Tote', price: 12500, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', category: 'Totes'})">Add to Bag</button>
                 </div>
             </div>
             <div class="product-card fade-up">
                 <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80" alt="Slim Bifold">
-                    <div class="quick-view">Quick View</div>
+                    <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Slim Bifold">
+                    <div class="quick-view" onclick="openQuickView(12)">Quick View</div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Slim Bifold</h3>
                     <p class="product-category">Vegetable tanned</p>
                     <p class="product-price">Rs. 3,800</p>
-                    <button class="add-to-bag" onclick="addToBag('Slim Bifold', 3800)">Add to Bag</button>
+                    <button class="add-to-bag" onclick="addToCart({id: 12, name: 'Slim Bifold', price: 3800, image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', category: 'Wallets'})">Add to Bag</button>
                 </div>
             </div>
             <div class="product-card fade-up">
                 <div class="product-image-container">
                     <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Merlot Crossbody">
                     <span class="product-badge">Bestseller</span>
-                    <div class="quick-view">Quick View</div>
+                    <div class="quick-view" onclick="openQuickView(2)">Quick View</div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Merlot Crossbody</h3>
                     <p class="product-category">Pebbled leather</p>
                     <p class="product-price">Rs. 8,200</p>
-                    <button class="add-to-bag" onclick="addToBag('Merlot Crossbody', 8200)">Add to Bag</button>
+                    <button class="add-to-bag" onclick="addToCart({id: 2, name: 'Merlot Crossbody', price: 8200, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80', category: 'Crossbody'})">Add to Bag</button>
                 </div>
             </div>
             <div class="product-card fade-up">
                 <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=600&q=80" alt="Artisan Card Case">
-                    <div class="quick-view">Quick View</div>
+                    <img src="https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80" alt="Artisan Card Case">
+                    <div class="quick-view" onclick="openQuickView(16)">Quick View</div>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">Artisan Card Case</h3>
                     <p class="product-category">Hand-stitched leather</p>
                     <p class="product-price">Rs. 2,200</p>
-                    <button class="add-to-bag" onclick="addToBag('Artisan Card Case', 2200)">Add to Bag</button>
+                    <button class="add-to-bag" onclick="addToCart({id: 16, name: 'Artisan Card Case', price: 2200, image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', category: 'Wallets'})">Add to Bag</button>
                 </div>
             </div>
         </div>
@@ -1538,7 +292,7 @@
     
     <!-- Craft/About Split Section -->
     <section class="craft-split" id="philosophy">
-        <div class="craft-image"></div>
+        <div class="craft-image" style="background-image: url('https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=900&q=80');"></div>
         <div class="craft-content">
             <p class="craft-eyebrow fade-up">Our Philosophy</p>
             <h2 class="fade-up">Where Leather Meets Legacy</h2>
@@ -1607,7 +361,7 @@
             </div>
             <div class="testimonial-card fade-up">
                 <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"I gifted my wife the Merlot Crossbody for our anniversary. She has not used any other bag since. Truly exceptional quality and design."</blockquote>
+                <blockquote>"I gifted my wife the Merlot Crossbody for our anniversary. She hasn't used any other bag since. Truly exceptional quality and design."</blockquote>
                 <p class="testimonial-author">Rehan K. &mdash; Bangalore</p>
             </div>
         </div>
@@ -1725,27 +479,27 @@
             <div class="footer-column">
                 <h4>Shop</h4>
                 <ul>
-                    <li><a href="#">Women is Bags</a></li>
-                    <li><a href="#">Men is Bags</a></li>
-                    <li><a href="#">Wallets</a></li>
-                    <li><a href="#">Belts</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="women.html">Women's Bags</a></li>
+                    <li><a href="men.html">Men's Bags</a></li>
+                    <li><a href="wallets.html">Wallets</a></li>
+                    <li><a href="men.html">Belts</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Craft</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Store Locator</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html">Our Craft</a></li>
+                    <li><a href="about.html">Sustainability</a></li>
+                    <li><a href="contact.html">Careers</a></li>
+                    <li><a href="contact.html">Store Locator</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h4>Help</h4>
                 <ul>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="#">Shipping & Returns</a></li>
                     <li><a href="#">Size Guide</a></li>
                     <li><a href="#">Care Instructions</a></li>
@@ -1763,242 +517,6 @@
         </div>
     </footer>
 
-    <script>
-        // Page Loader
-        setTimeout(() => {
-            document.getElementById('pageLoader').classList.add('hidden');
-        }, 1500);
-        
-        // Premium Custom Cursor with Lerp
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorRing = document.getElementById('cursor-ring');
-        
-        if (window.matchMedia('(pointer: fine)').matches) {
-            let mouseX = 0, mouseY = 0;
-            let ringX = 0, ringY = 0;
-            const lerpSpeed = 0.12;
-            
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursorDot.style.left = mouseX + 'px';
-                cursorDot.style.top = mouseY + 'px';
-            });
-            
-            function animateRing() {
-                ringX += (mouseX - ringX) * lerpSpeed;
-                ringY += (mouseY - ringY) * lerpSpeed;
-                cursorRing.style.left = ringX + 'px';
-                cursorRing.style.top = ringY + 'px';
-                requestAnimationFrame(animateRing);
-            }
-            animateRing();
-            
-            document.querySelectorAll('a, button').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursorDot.classList.add('hover');
-                    cursorRing.classList.add('hover');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursorDot.classList.remove('hover');
-                    cursorRing.classList.remove('hover');
-                });
-            });
-            
-            document.addEventListener('mousedown', () => {
-                cursorDot.classList.add('clicking');
-                cursorRing.classList.add('clicking');
-            });
-            
-            document.addEventListener('mouseup', () => {
-                cursorDot.classList.remove('clicking');
-                cursorRing.classList.remove('clicking');
-            });
-            
-            document.addEventListener('mouseleave', () => {
-                cursorDot.classList.add('hidden');
-                cursorRing.classList.add('hidden');
-            });
-            
-            document.addEventListener('mouseenter', () => {
-                cursorDot.classList.remove('hidden');
-                cursorRing.classList.remove('hidden');
-            });
-        }
-        
-        // Sticky Nav with scroll shrink
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        // Search Overlay
-        function openSearch() {
-            document.getElementById('searchOverlay').classList.add('active');
-            document.querySelector('.search-input').focus();
-        }
-        
-        function closeSearch() {
-            document.getElementById('searchOverlay').classList.remove('active');
-        }
-        
-        document.getElementById('searchOverlay').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('searchOverlay')) {
-                closeSearch();
-            }
-        });
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeSearch();
-                closeCart();
-                closeMobileMenu();
-            }
-        });
-        
-        // Cart Drawer
-        let cartItems = [
-            { name: 'Bordeaux Tote', price: 12500, qty: 1 },
-            { name: 'Slim Bifold', price: 3800, qty: 1 }
-        ];
-        
-        function openCart() {
-            document.getElementById('cartOverlay').classList.add('active');
-            document.getElementById('cartDrawer').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeCart() {
-            document.getElementById('cartOverlay').classList.remove('active');
-            document.getElementById('cartDrawer').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        function updateQty(index, change) {
-            cartItems[index].qty = Math.max(1, cartItems[index].qty + change);
-            document.getElementById('qty-' + index).textContent = cartItems[index].qty;
-            updateCartTotal();
-        }
-        
-        function removeItem(index) {
-            cartItems.splice(index, 1);
-            renderCart();
-        }
-        
-        function renderCart() {
-            // Simplified - in real app would re-render cart items
-            updateCartTotal();
-        }
-        
-        function updateCartTotal() {
-            const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            document.getElementById('cartSubtotal').textContent = 'Rs. ' + total.toLocaleString();
-        }
-        
-        // Mobile Menu
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
-        // Toast Notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
-        }
-        
-        // Add to Bag
-        function addToBag(name, price) {
-            showToast('Added to your bag ✓');
-            // Update cart badge
-            const badge = document.querySelector('.nav-icon-badge');
-            if (badge) {
-                badge.textContent = parseInt(badge.textContent || 0) + 1;
-            }
-        }
-        
-        // Newsletter Subscribe
-        function handleSubscribe(e) {
-            e.preventDefault();
-            const input = e.target.querySelector('input');
-            input.value = '';
-            document.getElementById('newsletterSuccess').classList.add('show');
-            setTimeout(() => {
-                document.getElementById('newsletterSuccess').classList.remove('show');
-            }, 3000);
-        }
-        
-        // Intersection Observer for fade-up animations
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const fadeObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    fadeObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-up').forEach(el => {
-            fadeObserver.observe(el);
-        });
-        
-        // Stats Counter Animation
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        const target = parseInt(stat.getAttribute('data-target'));
-                        const suffix = stat.textContent.includes('+') ? '+' : '';
-                        const suffix2 = stat.textContent.includes('%') ? '%' : '';
-                        let current = 0;
-                        const increment = target / 50;
-                        const timer = setInterval(() => {
-                            current += increment;
-                            if (current >= target) {
-                                stat.textContent = target + (target === 100 ? '%' : target >= 1000 ? '+' : '+');
-                                clearInterval(timer);
-                            } else {
-                                stat.textContent = Math.floor(current) + (target === 100 ? '' : '');
-                            }
-                        }, 30);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        document.querySelectorAll('.craft-stats').forEach(el => {
-            statsObserver.observe(el);
-        });
-        
-        // Parallax effect for craft image
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const craftImage = document.querySelector('.craft-image');
-            if (craftImage) {
-                const rate = scrolled * 0.3;
-                craftImage.style.backgroundPositionY = (50 + rate * 0.05) + '%';
-            }
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>

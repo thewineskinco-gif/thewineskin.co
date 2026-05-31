@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallets & Small Leather Goods - Wineskin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-loader" id="pageLoader"><div class="loader-text">WINESKIN</div></div>
+    <div id="cursor-dot"></div><div id="cursor-ring"></div>
+    <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
+    <div class="modal-overlay" id="quickViewModal"><div class="modal-content"><button class="modal-close" onclick="closeQuickView()">&times;</button><div class="modal-image"><img src="" alt=""></div><div class="modal-details"><h2></h2><p class="category"></p><p class="price"></p><p>Handcrafted from premium full-grain leather.</p><button class="btn btn-wine add-to-bag-btn" style="width: 100%; margin-top: auto;">Add to Bag</button></div></div></div>
+    <div class="mobile-menu" id="mobileMenu"><svg class="mobile-menu-close" onclick="closeMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><a href="women.html">Women</a><a href="men.html">Men</a><a href="accessories.html">Accessories</a><a href="wallets.html">Wallets</a><a href="collections.html">Collections</a><a href="about.html">About</a></div>
+    <div class="toast" id="toast">Added to your bag ✓</div>
+    <div class="announcement-bar"><div class="marquee-content"><span class="marquee-item">Free shipping on orders above Rs. 5,000</span><span class="marquee-item">Handcrafted in full-grain leather</span></div></div>
+    <nav class="navbar" id="navbar">
+        <div class="nav-left">
+            <div class="nav-item"><a href="women.html" class="nav-link">Women</a></div>
+            <div class="nav-item"><a href="men.html" class="nav-link">Men</a></div>
+            <div class="nav-item"><a href="accessories.html" class="nav-link">Accessories</a></div>
+            <div class="nav-item"><a href="wallets.html" class="nav-link active">Wallets</a></div>
+        </div>
+        <div class="nav-center"><a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo"></a></div>
+        <div class="nav-right">
+            <a href="collections.html" class="nav-link">Collections</a><a href="about.html" class="nav-link">About</a>
+            <div class="nav-icons">
+                <svg class="nav-icon" onclick="openSearch()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <a href="cart.html" style="position: relative;"><svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle><path d="M6 6L5 3H2"></path></svg><span class="nav-icon-badge">0</span></a>
+                <svg class="nav-icon hamburger" onclick="openMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </div>
+        </div>
+    </nav>
+    <section class="collection-hero">
+        <div class="collection-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1627123424574-724758594913?w=1920&q=80');"></div>
+        <div class="collection-hero-overlay"></div>
+        <div class="collection-hero-content"><h1>Wallets & Small Leather Goods</h1><p>Compact companions for everyday essentials</p></div>
+    </section>
+    <section class="product-section">
+        <div class="filter-bar fade-up">
+            <button class="filter-btn active" onclick="filterProducts('All')">All</button>
+            <button class="filter-btn" onclick="filterProducts('Bifold')">Bifold</button>
+            <button class="filter-btn" onclick="filterProducts('Trifold')">Trifold</button>
+            <button class="filter-btn" onclick="filterProducts('Card Cases')">Card Cases</button>
+            <button class="filter-btn" onclick="filterProducts('Zip Wallets')">Zip Wallets</button>
+            <button class="filter-btn" onclick="filterProducts('Coin Purses')">Coin Purses</button>
+        </div>
+        <div class="product-grid">
+            <div class="product-card fade-up" data-category="Bifold">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Heritage Bifold"><div class="quick-view" onclick="openQuickView(12)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Slim Bifold</h3><p class="product-category">Bifold</p><p class="product-price">₹3,800</p><button class="add-to-bag" onclick="addToCart({id: 12, name: 'Slim Bifold', price: 3800, image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', category: 'Bifold'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Card Cases">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80" alt="Minimal Card Case"><div class="quick-view" onclick="openQuickView(16)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Card Holder</h3><p class="product-category">Card Cases</p><p class="product-price">₹2,200</p><button class="add-to-bag" onclick="addToCart({id: 16, name: 'Card Holder', price: 2200, image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', category: 'Card Cases'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Zip Wallets">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80" alt="Zip Around"><div class="quick-view" onclick="openQuickView(25)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Zip Around Wallet</h3><p class="product-category">Zip Wallets</p><p class="product-price">₹5,500</p><button class="add-to-bag" onclick="addToCart({id: 25, name: 'Zip Around Wallet', price: 5500, image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', category: 'Zip Wallets'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Bifold">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Executive Bifold"><div class="quick-view" onclick="openQuickView(26)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Executive Bifold</h3><p class="product-category">Bifold</p><p class="product-price">₹4,800</p><button class="add-to-bag" onclick="addToCart({id: 26, name: 'Executive Bifold', price: 4800, image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', category: 'Bifold'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Trifold">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Classic Trifold"><div class="quick-view" onclick="openQuickView(27)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Classic Trifold</h3><p class="product-category">Trifold</p><p class="product-price">₹4,200</p><button class="add-to-bag" onclick="addToCart({id: 27, name: 'Classic Trifold', price: 4200, image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', category: 'Trifold'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Card Cases">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80" alt="Premium Card Case"><div class="quick-view" onclick="openQuickView(18)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Premium Card Case</h3><p class="product-category">Card Cases</p><p class="product-price">₹3,200</p><button class="add-to-bag" onclick="addToCart({id: 18, name: 'Premium Card Case', price: 3200, image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', category: 'Card Cases'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Coin Purses">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Coin Wallet"><div class="quick-view" onclick="openQuickView(22)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Coin Pouch</h3><p class="product-category">Coin Purses</p><p class="product-price">₹1,800</p><button class="add-to-bag" onclick="addToCart({id: 22, name: 'Coin Pouch', price: 1800, image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', category: 'Coin Purses'})">Add to Bag</button></div>
+            </div>
+            <div class="product-card fade-up" data-category="Zip Wallets">
+                <div class="product-image-container"><img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80" alt="Mini Zip Wallet"><div class="quick-view" onclick="openQuickView(28)">Quick View</div></div>
+                <div class="product-info"><h3 class="product-name">Mini Zip Wallet</h3><p class="product-category">Zip Wallets</p><p class="product-price">₹3,500</p><button class="add-to-bag" onclick="addToCart({id: 28, name: 'Mini Zip Wallet', price: 3500, image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', category: 'Zip Wallets'})">Add to Bag</button></div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand"><img src="logo.png" alt="Wineskin"><h3>WINESKIN</h3><p>Handcrafted luxury leather goods.</p></div>
+            <div class="footer-column"><h4>Shop</h4><ul><li><a href="women.html">Women's Bags</a></li><li><a href="men.html">Men's Bags</a></li><li><a href="wallets.html">Wallets</a></li><li><a href="accessories.html">Accessories</a></li></ul></div>
+            <div class="footer-column"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+            <div class="footer-column"><h4>Help</h4><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 Wineskin Leather Goods.</p></div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
