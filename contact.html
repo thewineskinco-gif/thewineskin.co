@@ -27,6 +27,18 @@
             window.addEventListener('load', function() { setTimeout(hide, 400); });
         })();
     </script>
+    <!-- CRITICAL FIX: Ensure all content visible immediately -->
+    <style>.fade-up { opacity: 1 !important; transform: translateY(0) !important; } section { display: block !important; min-height: 200px !important; }</style>
+    <script>
+        (function() {
+            var fadeUps = document.querySelectorAll('.fade-up');
+            for (var i = 0; i < fadeUps.length; i++) { fadeUps[i].style.opacity = '1'; fadeUps[i].style.transform = 'translateY(0)'; }
+            setTimeout(function() {
+                var all = document.querySelectorAll('.fade-up');
+                for (var j = 0; j < all.length; j++) { all[j].style.opacity = '1'; all[j].style.transform = 'translateY(0)'; all[j].classList.add('visible'); }
+            }, 1000);
+        })();
+    </script>
     <div id="cursor-dot"></div><div id="cursor-ring"></div>
     <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
     <div class="mobile-menu" id="mobileMenu"><svg class="mobile-menu-close" onclick="closeMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg><a href="men.html">Belts</a><a href="wallets.html">Wallets</a><a href="collections.html">Jackets</a><a href="collections.html">Collections</a><a href="about.html">About</a></div>

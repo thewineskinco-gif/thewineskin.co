@@ -315,19 +315,42 @@ function closeMobileMenu() {
 // ==================== SCROLL ANIMATIONS ====================
 function initScrollAnimations() {
     var fadeEls = document.querySelectorAll('.fade-up');
+
+    // CRITICAL FIX: First ensure all elements are visible by default
+    // Then add animate-hidden class for those that will animate
+    fadeEls.forEach(function(el) {
+        el.classList.add('animate-hidden');
+    });
+
     if ('IntersectionObserver' in window) {
         var fadeObserver = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    entry.target.classList.remove('animate-hidden');
                     fadeObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
         fadeEls.forEach(function(el) { fadeObserver.observe(el); });
     } else {
-        fadeEls.forEach(function(el) { el.classList.add('visible'); });
+        // Fallback: just show everything
+        fadeEls.forEach(function(el) {
+            el.classList.add('visible');
+            el.classList.remove('animate-hidden');
+        });
     }
+
+    // CRITICAL FAILSAFE: Force all fade-up elements visible after 2 seconds
+    setTimeout(function() {
+        document.querySelectorAll('.fade-up').forEach(function(el) {
+            el.classList.add('visible');
+            el.classList.add('failsafe-visible');
+            el.classList.remove('animate-hidden');
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }, 2000);
 }
 
 // ==================== STATS COUNTER ====================

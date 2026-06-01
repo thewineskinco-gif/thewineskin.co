@@ -27,6 +27,18 @@
             window.addEventListener('load', function() { setTimeout(hide, 400); });
         })();
     </script>
+    <!-- CRITICAL FIX: Ensure all content visible immediately -->
+    <style>.fade-up { opacity: 1 !important; transform: translateY(0) !important; } section { display: block !important; min-height: 200px !important; }</style>
+    <script>
+        (function() {
+            var fadeUps = document.querySelectorAll('.fade-up');
+            for (var i = 0; i < fadeUps.length; i++) { fadeUps[i].style.opacity = '1'; fadeUps[i].style.transform = 'translateY(0)'; }
+            setTimeout(function() {
+                var all = document.querySelectorAll('.fade-up');
+                for (var j = 0; j < all.length; j++) { all[j].style.opacity = '1'; all[j].style.transform = 'translateY(0)'; all[j].classList.add('visible'); }
+            }, 1000);
+        })();
+    </script>
     <div id="cursor-dot"></div><div id="cursor-ring"></div>
     <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
     <div class="modal-overlay" id="quickViewModal"><div class="modal-content"><button class="modal-close" onclick="closeQuickView()">&times;</button><div class="modal-image"><img src="" alt=""></div><div class="modal-details"><h2></h2><p class="category"></p><p class="price"></p><p>Handcrafted from premium full-grain leather.</p><button class="btn btn-wine add-to-bag-btn" style="width: 100%; margin-top: auto;">Add to Bag</button></div></div></div>

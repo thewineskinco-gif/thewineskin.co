@@ -30,6 +30,34 @@
             window.addEventListener('load', function() { setTimeout(hide, 400); });
         })();
     </script>
+    <!-- CRITICAL FIX: Ensure all content visible immediately -->
+    <style>
+        .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
+        section { display: block !important; min-height: 200px !important; }
+        .hero { min-height: 90vh !important; }
+        .categories, .featured { min-height: 400px !important; }
+    </style>
+    <script>
+        // Immediate failsafe: force all content visible
+        document.documentElement.classList.add('js-loading');
+        (function() {
+            // Make all fade-up elements visible immediately
+            var fadeUps = document.querySelectorAll('.fade-up');
+            for (var i = 0; i < fadeUps.length; i++) {
+                fadeUps[i].style.opacity = '1';
+                fadeUps[i].style.transform = 'translateY(0)';
+            }
+            // Secondary failsafe after 1 second
+            setTimeout(function() {
+                var allFadeUps = document.querySelectorAll('.fade-up');
+                for (var j = 0; j < allFadeUps.length; j++) {
+                    allFadeUps[j].style.opacity = '1';
+                    allFadeUps[j].style.transform = 'translateY(0)';
+                    allFadeUps[j].classList.add('visible');
+                }
+            }, 1000);
+        })();
+    </script>
 
     <!-- Premium Custom Cursor -->
     <div id="cursor-dot"></div>
