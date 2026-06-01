@@ -14,7 +14,33 @@
     <div class="page-loader" id="pageLoader">
         <div class="loader-text">WINESKIN</div>
     </div>
-    
+    <script>
+        // LOADER FIX - Backup failsafe
+        (function() {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        loader.style.opacity = '0';
+                        loader.style.transition = 'opacity 0.6s ease';
+                        setTimeout(function() {
+                            loader.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }, 600);
+                    }, 800);
+                });
+                setTimeout(function() {
+                    loader.style.opacity = '0';
+                    loader.style.transition = 'opacity 0.6s ease';
+                    setTimeout(function() {
+                        loader.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 600);
+                }, 3000);
+            }
+        })();
+    </script>
+
     <!-- Premium Custom Cursor -->
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>

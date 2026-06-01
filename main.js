@@ -167,10 +167,30 @@ function showToast(message) {
 
 // ==================== PAGE LOADER ====================
 function initPageLoader() {
-    setTimeout(() => {
-        const loader = document.getElementById('pageLoader');
-        if (loader) loader.classList.add('hidden');
-    }, 1500);
+    const loader = document.getElementById('pageLoader');
+    if (!loader) return;
+
+    // LOADER FIX - Bulletproof version
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.6s ease';
+            setTimeout(function() {
+                loader.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 600);
+        }, 800);
+    });
+
+    // Failsafe — force hide after 3 seconds no matter what
+    setTimeout(function() {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.6s ease';
+        setTimeout(function() {
+            loader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 600);
+    }, 3000);
 }
 
 // ==================== CUSTOM CURSOR ====================

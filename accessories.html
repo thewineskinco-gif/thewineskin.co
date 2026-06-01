@@ -11,6 +11,31 @@
 </head>
 <body>
     <div class="page-loader" id="pageLoader"><div class="loader-text">WINESKIN</div></div>
+    <script>
+        (function() {
+            const loader = document.getElementById('pageLoader');
+            if (loader) {
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        loader.style.opacity = '0';
+                        loader.style.transition = 'opacity 0.6s ease';
+                        setTimeout(function() {
+                            loader.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }, 600);
+                    }, 800);
+                });
+                setTimeout(function() {
+                    loader.style.opacity = '0';
+                    loader.style.transition = 'opacity 0.6s ease';
+                    setTimeout(function() {
+                        loader.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }, 600);
+                }, 3000);
+            }
+        })();
+    </script>
     <div id="cursor-dot"></div><div id="cursor-ring"></div>
     <div class="search-overlay" id="searchOverlay"><div class="search-container"><span class="search-close" onclick="closeSearch()">&times;</span><input type="text" class="search-input" placeholder="Search for products..."></div></div>
     <div class="modal-overlay" id="quickViewModal"><div class="modal-content"><button class="modal-close" onclick="closeQuickView()">&times;</button><div class="modal-image"><img src="" alt=""></div><div class="modal-details"><h2></h2><p class="category"></p><p class="price"></p><p>Handcrafted from premium full-grain leather.</p><button class="btn btn-wine add-to-bag-btn" style="width: 100%; margin-top: auto;">Add to Bag</button></div></div></div>
