@@ -253,13 +253,17 @@ function initCustomCursor() {
     });
     
     // Cursor color change on dark sections
-    const darkSections = document.querySelectorAll('.hero, .banner-strip, .marquee-strip, .footer, .collection-hero, .stats-strip, .about-hero, .contact-hero');
+    const darkSections = document.querySelectorAll('.hero, .banner-strip, .marquee-strip, .marquee-section, .footer, .collection-hero, .stats-strip, .about-hero, .contact-hero');
     darkSections.forEach(section => {
         section.addEventListener('mouseenter', () => {
             document.body.classList.add('cursor-light');
+            cursorDot.style.background = '#D9C8B0';
+            cursorRing.style.borderColor = 'rgba(217,200,176,0.7)';
         });
         section.addEventListener('mouseleave', () => {
             document.body.classList.remove('cursor-light');
+            cursorDot.style.background = '#6B1A1A';
+            cursorRing.style.borderColor = '#6B1A1A';
         });
     });
 }
@@ -308,55 +312,54 @@ function closeMobileMenu() {
     }
 }
 
-// ==================== INTERSECTION OBSERVER ====================
+// ==================== SCROLL ANIMATIONS ====================
 function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                fadeObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('.fade-up').forEach(el => {
-        fadeObserver.observe(el);
-    });
+    var fadeEls = document.querySelectorAll('.fade-up');
+    if ('IntersectionObserver' in window) {
+        var fadeObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+    } else {
+        fadeEls.forEach(function(el) { el.classList.add('visible'); });
+    }
 }
 
 // ==================== STATS COUNTER ====================
 function initStatsCounter() {
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    function animateCount(el, target, suffix) {
+        var start = 0;
+        var duration = 2000;
+        var step = target / (duration / 16);
+        var timer = setInterval(function() {
+            start += step;
+            if (start >= target) {
+                start = target;
+                clearInterval(timer);
+            }
+            el.textContent = Math.floor(start) + (suffix || '');
+        }, 16);
+    }
+    var statsObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                const statNumbers = entry.target.querySelectorAll('.stat-number, .count-up');
-                statNumbers.forEach(stat => {
-                    const target = parseInt(stat.getAttribute('data-target'));
-                    let current = 0;
-                    const increment = target / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            stat.textContent = target + (stat.getAttribute('data-suffix') || '+');
-                            clearInterval(timer);
-                        } else {
-                            stat.textContent = Math.floor(current);
-                        }
-                    }, 30);
-                });
-                statsObserver.unobserve(entry.target);
+                var statYears = document.querySelector('.stat-years');
+                var statGrain = document.querySelector('.stat-grain');
+                var statClients = document.querySelector('.stat-clients');
+                if (statYears) animateCount(statYears, 15, '+');
+                if (statGrain) animateCount(statGrain, 100, '%');
+                if (statClients) animateCount(statClients, 5000, '+');
+                statsObserver.disconnect();
             }
         });
     }, { threshold: 0.5 });
-    
-    document.querySelectorAll('.craft-stats, .stats-grid').forEach(el => {
-        statsObserver.observe(el);
-    });
+    var statsSection = document.querySelector('.craft-stats');
+    if (statsSection) statsObserver.observe(statsSection);
 }
 
 // ==================== TIMELINE ANIMATION ====================
