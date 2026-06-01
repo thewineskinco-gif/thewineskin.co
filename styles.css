@@ -17,8 +17,10 @@ body { font-family: 'Jost', sans-serif; color: var(--black); background: var(--o
 .page-loader.hidden { opacity: 0; visibility: hidden; }
 .loader-text { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 300; color: var(--beige); letter-spacing: 8px; text-transform: uppercase; animation: loaderPulse 1.5s ease-out forwards; }
 @keyframes loaderPulse { 0% { opacity: 0; transform: scale(0.9); } 30% { opacity: 1; transform: scale(1); } 70% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.05); } }
-#cursor-dot { position: fixed; width: 6px; height: 6px; background: #D9C8B0; border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+#cursor-dot { position: fixed; width: 6px; height: 6px; background: #6B1A1A; border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background 0.2s; }
 #cursor-ring { position: fixed; width: 36px; height: 36px; border: 1.5px solid #6B1A1A; border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, border-width 0.2s, background 0.2s, transform 0.08s ease-out; }
+body.cursor-light #cursor-dot { background: #D9C8B0; }
+body.cursor-light #cursor-ring { border-color: #D9C8B0; }
 #cursor-dot.hover { width: 10px; height: 10px; }
 #cursor-ring.hover { width: 56px; height: 56px; border-width: 2px; background: rgba(107, 26, 26, 0.08); }
 #cursor-dot.clicking { transform: translate(-50%, -50%) scale(0.8); }
@@ -75,6 +77,10 @@ body { font-family: 'Jost', sans-serif; color: var(--black); background: var(--o
 .btn-outline:hover { background: var(--beige); color: var(--wine); }
 .btn-wine { background: var(--wine); color: var(--beige); }
 .btn-wine:hover { background: var(--wine-dark); }
+.btn-whatsapp { background: #25D366; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.btn-whatsapp:hover { background: #1da851; color: white; }
+.btn-whatsapp svg { width: 18px; height: 18px; }
+.product-info .enquire-text { font-size: 13px; color: var(--gray); font-style: italic; margin-bottom: 12px; }
 .btn-underline::after { content: ''; position: absolute; bottom: 12px; left: 36px; width: 0; height: 2px; background: var(--wine); transition: width 0.4s ease; }
 .btn-underline:hover::after { width: calc(100% - 72px); }
 .filter-bar { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }

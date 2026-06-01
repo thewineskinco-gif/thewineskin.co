@@ -251,6 +251,17 @@ function initCustomCursor() {
         cursorDot.classList.remove('hidden');
         cursorRing.classList.remove('hidden');
     });
+    
+    // Cursor color change on dark sections
+    const darkSections = document.querySelectorAll('.hero, .banner-strip, .marquee-strip, .footer, .collection-hero, .stats-strip, .about-hero, .contact-hero');
+    darkSections.forEach(section => {
+        section.addEventListener('mouseenter', () => {
+            document.body.classList.add('cursor-light');
+        });
+        section.addEventListener('mouseleave', () => {
+            document.body.classList.remove('cursor-light');
+        });
+    });
 }
 
 // ==================== NAVIGATION ====================
@@ -447,37 +458,40 @@ function closeQuickView() {
 }
 
 // ==================== PRODUCT DATA ====================
+// Leather Belts (6 products)
+// Leather Wallets (6 products)
 const productsData = [
-    // Women's Collection
-    { id: 1, name: 'Bordeaux Tote', price: 12500, category: 'Totes', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', rating: 4.8, reviews: 124, description: 'A spacious tote crafted from premium full-grain leather. The Bordeaux Tote features reinforced handles and a classic silhouette that complements any outfit.' },
-    { id: 2, name: 'Milano Crossbody', price: 9800, category: 'Crossbody', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80', rating: 4.7, reviews: 98, description: 'The perfect companion for city adventures. Adjustable strap and multiple compartments keep your essentials organized.' },
-    { id: 3, name: 'Evening Clutch', price: 6500, category: 'Clutches', image: 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80', rating: 4.9, reviews: 86, description: 'Elegant evening clutch in supple leather with a magnetic closure. Perfect for formal occasions.' },
-    { id: 4, name: 'Sling Mini', price: 7200, category: 'Sling Bags', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80', rating: 4.6, reviews: 72, description: 'Compact yet functional, the Sling Mini is designed for the modern minimalist.' },
-    { id: 5, name: 'Travel Tote', price: 14500, category: 'Totes', image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80', rating: 4.8, reviews: 156, description: 'Your perfect travel companion with a luggage sleeve and multiple interior pockets.' },
-    { id: 6, name: 'Day Crossbody', price: 8900, category: 'Crossbody', image: 'https://images.unsplash.com/photo-1591561954557-26941169b09e?w=600&q=80', rating: 4.7, reviews: 103, description: 'Versatile crossbody that transitions effortlessly from day to night.' },
-    { id: 7, name: 'Beige Clutch', price: 5800, category: 'Clutches', image: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600&q=80', rating: 4.5, reviews: 64, description: 'Natural-toned clutch in vegetable-tanned leather that develops a beautiful patina over time.' },
-    { id: 8, name: 'Compact Sling', price: 6200, category: 'Sling Bags', image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', rating: 4.6, reviews: 89, description: 'Streamlined sling bag with quick-access front pocket.' },
+    // LEATHER BELTS (6 products)
+    { id: 1, name: 'Classic Tan Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80', rating: 4.8, reviews: 124, description: 'Full-grain vegetable tanned leather, brass buckle. A timeless piece that complements any outfit.' },
+    { id: 2, name: 'Formal Black Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=600&q=80', rating: 4.7, reviews: 98, description: 'Sleek full-grain black leather, silver buckle. Perfect for formal occasions and professional settings.' },
+    { id: 3, name: 'Braided Leather Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', rating: 4.9, reviews: 86, description: 'Hand-braided cognac leather. Each braid is crafted by hand for a unique, artisanal look.' },
+    { id: 4, name: 'Double Tour Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80', rating: 4.6, reviews: 72, description: 'Wide wine red leather, statement piece. Bold and elegant for those who dare to stand out.' },
+    { id: 5, name: 'Reversible Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=600&q=80', rating: 4.8, reviews: 156, description: 'Black & tan reversible full-grain leather. Two looks in one premium belt.' },
+    { id: 6, name: 'Casual Brown Belt', price: 0, category: 'Belts', image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80', rating: 4.7, reviews: 103, description: 'Distressed brown leather, antique buckle. Relaxed style for everyday wear.' },
     
-    // Men's Collection
-    { id: 9, name: 'Classic Briefcase', price: 18500, category: 'Briefcases', image: 'https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=600&q=80', rating: 4.9, reviews: 201, description: 'Timeless briefcase for the discerning professional. Fits laptops up to 15".' },
-    { id: 10, name: 'Messenger Pro', price: 13200, category: 'Messengers', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', rating: 4.7, reviews: 145, description: 'Professional messenger bag with padded laptop compartment.' },
-    { id: 11, name: 'Weekend Duffel', price: 22000, category: 'Duffels', image: 'https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80', rating: 4.8, reviews: 178, description: 'Spacious duffel for weekend getaways. Includes a shoe compartment.' },
-    { id: 12, name: 'Slim Bifold', price: 3800, category: 'Wallets', image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', rating: 4.6, reviews: 234, description: 'Minimalist wallet that fits comfortably in any pocket.' },
-    { id: 13, name: 'Leather Belt', price: 4500, category: 'Belts', image: 'https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80', rating: 4.7, reviews: 167, description: 'Handcrafted leather belt with brushed brass buckle.' },
-    { id: 14, name: 'Portfolio Bag', price: 16800, category: 'Briefcases', image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80', rating: 4.8, reviews: 112, description: 'Sleek portfolio for documents and slim laptops.' },
-    { id: 15, name: 'City Messenger', price: 11500, category: 'Messengers', image: 'https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=600&q=80', rating: 4.5, reviews: 98, description: 'Urban messenger designed for the daily commute.' },
-    { id: 16, name: 'Card Holder', price: 2200, category: 'Wallets', image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', rating: 4.8, reviews: 312, description: 'Ultra-slim card holder for the essentials.' },
-    
-    // Accessories
-    { id: 17, name: 'Leather Keychain', price: 1200, category: 'Keychains', image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', rating: 4.5, reviews: 87, description: 'Durable keychain with brass hardware.' },
-    { id: 18, name: 'Card Case Pro', price: 2800, category: 'Card Cases', image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', rating: 4.7, reviews: 156, description: 'Premium card case with multiple slots.' },
-    { id: 19, name: 'Passport Holder', price: 3500, category: 'Passport Holders', image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80', rating: 4.8, reviews: 203, description: 'Elegant passport holder with card slots.' },
-    { id: 20, name: 'Watch Strap', price: 4500, category: 'Watch Straps', image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80', rating: 4.6, reviews: 134, description: 'Genuine leather watch strap, quick-release pins.' },
-    { id: 21, name: 'Luggage Tag', price: 1500, category: 'Luggage Tags', image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600&q=80', rating: 4.4, reviews: 76, description: 'Distinguish your luggage with this elegant tag.' },
-    { id: 22, name: 'Coin Pouch', price: 1800, category: 'Coin Purses', image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', rating: 4.5, reviews: 98, description: 'Compact pouch for coins and small items.' },
-    { id: 23, name: 'Cable Organizer', price: 2200, category: 'Accessories', image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', rating: 4.3, reviews: 67, description: 'Keep your cables tangle-free.' },
-    { id: 24, name: 'Notebook Cover', price: 5500, category: 'Accessories', image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80', rating: 4.7, reviews: 145, description: 'Refillable leather notebook cover.' }
+    // LEATHER WALLETS (6 products)
+    { id: 7, name: 'Slim Bifold', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80', rating: 4.6, reviews: 234, description: 'Minimalist full-grain leather, 6 card slots. Slim profile that fits comfortably in any pocket.' },
+    { id: 8, name: 'Classic Trifold', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80', rating: 4.7, reviews: 167, description: 'Spacious full-grain with coin pocket. Traditional design with modern craftsmanship.' },
+    { id: 9, name: 'Zip Around Wallet', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80', rating: 4.8, reviews: 112, description: 'Full-zip closure, 12 card slots. Maximum security and organization for your essentials.' },
+    { id: 10, name: 'Card Holder', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&q=80', rating: 4.5, reviews: 98, description: 'Ultra slim, 4 card slots. For the minimalist who carries only what matters.' },
+    { id: 11, name: 'Money Clip Wallet', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600&q=80', rating: 4.6, reviews: 89, description: 'Sleek money clip with card slots. Combines traditional elegance with modern functionality.' },
+    { id: 12, name: 'Long Wallet', price: 0, category: 'Wallets', image: 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=600&q=80', rating: 4.9, reviews: 145, description: 'Full-length notes compartment, premium grain. Sophisticated design for the discerning individual.' }
 ];
+
+// WhatsApp phone number (placeholder - client to update)
+const WHATSAPP_NUMBER = '919XXXXXXXXX';
+
+// Generate WhatsApp link with product name
+function getWhatsAppLink(productName) {
+    const text = encodeURIComponent(`Hi, I am interested in the ${productName} from Wineskin. Please share more details.`);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
+
+// General WhatsApp link for enquiries
+function getGeneralWhatsAppLink() {
+    const text = encodeURIComponent('Hi, I am interested in Wineskin products.');
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+}
 
 function getProductById(id) {
     return productsData.find(p => p.id === parseInt(id));
