@@ -1132,11 +1132,11 @@ img { max-width: 100%; height: auto; display: block; }
   
   /* Navigation */
   .navbar { height: 70px; padding: 0 16px; }
-  .nav-logo { height: 45px; }
+  .nav-logo { height: 44px; }
   .nav-left { display: flex; align-items: center; }
   .nav-left .nav-item { display: none; }
-  .nav-left .nav-brand { margin-right: 0; }
-  .nav-wordmark { display: none; }
+  .nav-left .nav-brand { margin-right: 0; display: flex; align-items: center; gap: 8px; }
+  .nav-wordmark { display: block; font-size: 12px; }
   .nav-right .desktop-only { display: none; }
   .hamburger { display: flex !important; }
   .nav-icons { gap: 16px; }
@@ -1292,8 +1292,11 @@ input:focus-visible {
   .announcement-bar { height: 32px; }
   .marquee-item { font-size: 11px; letter-spacing: 2px; padding: 0 24px; }
   .navbar { height: 70px; padding: 0 16px; }
-  .nav-logo { height: 45px; }
-  .nav-left { display: none; }
+  .nav-logo { height: 44px; }
+  .nav-left { display: flex; align-items: center; }
+  .nav-left .nav-item { display: none; }
+  .nav-left .nav-brand { margin-right: 0; display: flex; align-items: center; gap: 8px; }
+  .nav-wordmark { display: block; font-size: 12px; }
   .nav-right .desktop-only { display: none; }
   .hamburger { display: flex !important; }
   .nav-icons { gap: 16px; }
