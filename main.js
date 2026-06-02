@@ -342,6 +342,30 @@ function initMobileMenu() {
     }, { passive: true });
 }
 
+// RESPONSIVE FIX: Floating WhatsApp button position management
+function initFloatingWhatsApp() {
+    const whatsappBtn = document.querySelector('.floating-whatsapp');
+    const footer = document.querySelector('.footer');
+    if (!whatsappBtn || !footer) return;
+    
+    function updateWhatsAppPosition() {
+        const footerRect = footer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // If footer is visible in viewport
+        if (footerRect.top < windowHeight) {
+            whatsappBtn.classList.add('near-footer');
+        } else {
+            whatsappBtn.classList.remove('near-footer');
+        }
+    }
+    
+    // Update on scroll
+    window.addEventListener('scroll', updateWhatsAppPosition, { passive: true });
+    // Initial check
+    updateWhatsAppPosition();
+}
+
 // ==================== SCROLL ANIMATIONS ====================
 function initScrollAnimations() {
     var fadeEls = document.querySelectorAll('.fade-up');
