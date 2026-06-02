@@ -542,32 +542,644 @@ section {
     .timeline-content::before, .timeline-item:nth-child(even) .timeline-content::before { left: -40px; right: auto; }
     .stats-grid, .craft-grid, .team-grid, .store-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 768px) {
-    .navbar { padding: 0 20px; height: 72px; }
-    .nav-logo, .nav-logo-img { height: 60px; }
-    .nav-left .nav-link, .nav-right .nav-link { display: none; }
-    .hamburger { display: block; }
-    .hero { height: auto; min-height: 600px; }
-    .hero-content { padding: 0 24px; }
-    .hero-buttons { flex-direction: column; }
-    .hero h1 .italic { font-size: 32px; }
-    .hero h1 .bold { font-size: 48px; }
-    .scroll-indicator { left: 24px; }
-    .category-grid, .product-grid, .testimonial-grid { grid-template-columns: 1fr; }
-    .categories, .featured, .testimonials, .product-section { padding: 60px 24px; }
-    .banner-strip { padding: 48px 24px; flex-direction: column; text-align: center; }
-    .banner-content h2 { font-size: 32px; }
-    .craft-content { padding: 48px 24px; }
-    .craft-stats { grid-template-columns: 1fr; gap: 24px; }
-    .instagram-grid { grid-template-columns: repeat(2, 1fr); }
-    .newsletter-form { flex-direction: column; }
-    .footer { padding: 48px 24px 24px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .section-header h2 { font-size: 36px; }
-    .stats-grid, .craft-grid, .team-grid, .store-grid { grid-template-columns: 1fr; }
-    .collection-feature-content { padding: 48px 24px; }
-    .modal-content { grid-template-columns: 1fr; }
-    .contact-form { padding: 24px; }
-    .cart-page { padding: 24px; }
+/* ============================================
+   MOBILE & TABLET RESPONSIVE STYLES
+   Added for mobile/desktop compatibility
+   ============================================ */
+
+/* RESPONSIVE FIX: Base responsive setup */
+html, body { overflow-x: hidden; max-width: 100vw; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* RESPONSIVE FIX: Touch accessibility - min 48px tap targets */
+button, a, .nav-icon, .btn, .category-btn, .add-to-bag, .filter-btn, .footer-social a {
+    min-height: 44px;
+    min-width: 44px;
 }
+
+/* RESPONSIVE FIX: Focus states for accessibility */
+a:focus-visible, button:focus-visible, .nav-icon:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 2px;
+}
+
+/* Tablet (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    /* RESPONSIVE FIX: Tablet header adjustments */
+    .navbar { padding: 0 32px; height: 80px !important; }
+    .nav-logo, .nav-logo-img { height: 55px !important; }
+    .nav-icon { width: 28px; height: 28px; }
+    .nav-icons { gap: 16px; }
+    
+    /* RESPONSIVE FIX: Tablet hero adjustments */
+    .hero-content { padding: 0 48px; max-width: 600px; }
+    .hero h1 .italic { font-size: 28px; }
+    .hero h1 .bold { font-size: 52px; }
+    .hero p { font-size: 14px; max-width: 380px; }
+    .hero-buttons { gap: 12px; }
+    .hero-buttons .btn { padding: 14px 28px; font-size: 12px; }
+    .scroll-indicator { left: 48px; }
+    
+    /* RESPONSIVE FIX: Tablet category cards - 2 columns */
+    .category-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 16px !important;
+        padding: 0 24px;
+    }
+    .category-card { min-height: 320px !important; }
+    .category-card img { min-height: 320px !important; }
+    
+    /* RESPONSIVE FIX: Tablet product grid - 2 columns */
+    .product-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 20px !important;
+        padding: 0 24px;
+    }
+    
+    /* RESPONSIVE FIX: Tablet philosophy section */
+    .craft-split { grid-template-columns: 1fr 1fr !important; }
+    .craft-image { min-height: 400px !important; }
+    .craft-content { padding: 48px 32px !important; }
+    .craft-content h2 { font-size: 32px; }
+    .craft-content p { font-size: 14px; }
+    .craft-stats { 
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 24px;
+        margin-top: 32px;
+        padding-top: 32px;
+    }
+    .stat-item h3 { font-size: 32px; }
+    .stat-item p { font-size: 11px; }
+    
+    /* RESPONSIVE FIX: Tablet testimonial grid */
+    .testimonial-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    
+    /* RESPONSIVE FIX: Tablet instagram grid */
+    .instagram-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    
+    /* RESPONSIVE FIX: Tablet newsletter side-by-side */
+    .newsletter-form { 
+        flex-direction: row !important; 
+        max-width: 500px;
+    }
+    .newsletter-form input { flex: 0 0 70%; }
+    .newsletter-form button { flex: 0 0 30%; padding: 16px 20px; }
+    
+    /* RESPONSIVE FIX: Tablet footer */
+    .footer-grid { grid-template-columns: 2fr 1fr 1fr !important; }
+    
+    /* RESPONSIVE FIX: Tablet marquee */
+    .marquee-text span { font-size: 22px; letter-spacing: 3px; }
+}
+
+/* Mobile (480px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 480px) {
+    /* RESPONSIVE FIX: Mobile header - logo 45px, icons 24px */
+    .navbar { 
+        padding: 0 16px !important; 
+        height: 72px !important;
+        display: flex !important;
+        align-items: center !important;
+    }
+    .nav-logo, .nav-logo-img { height: 45px !important; }
+    .nav-left .nav-link, .nav-right .nav-link { display: none !important; }
+    .hamburger { display: block !important; width: 24px !important; height: 24px !important; }
+    .nav-icons { gap: 12px !important; }
+    .nav-icon { width: 24px !important; height: 24px !important; }
+    
+    /* RESPONSIVE FIX: Mobile menu full-screen overlay with dark background */
+    .mobile-menu {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        left: auto !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: var(--black) !important;
+        z-index: 2000 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transition: right 300ms ease-out !important;
+        padding: 80px 24px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .mobile-menu.active {
+        right: 0 !important;
+    }
+    .mobile-menu-close {
+        position: absolute !important;
+        top: 24px !important;
+        right: 24px !important;
+        width: 24px !important;
+        height: 24px !important;
+        color: var(--beige-light) !important;
+        cursor: pointer;
+    }
+    .mobile-menu a {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: 20px !important;
+        letter-spacing: 2px !important;
+        color: var(--beige-light) !important;
+        text-decoration: none !important;
+        padding: 16px 0 !important;
+        min-height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        border-bottom: 1px solid rgba(217, 200, 176, 0.2) !important;
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    .mobile-menu a:hover {
+        color: var(--beige) !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile announcement bar */
+    .announcement-bar { height: 36px !important; }
+    .marquee-item { 
+        font-size: 11px !important; 
+        letter-spacing: 1.5px !important;
+        padding: 0 24px !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile hero section */
+    .hero {
+        height: 100vh !important;
+        min-height: 600px !important;
+    }
+    .hero-bg {
+        background-position: center !important;
+    }
+    .hero-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(107, 26, 26, 0.4) 50%, transparent 100%) !important;
+    }
+    .hero-content {
+        position: absolute !important;
+        bottom: 80px !important;
+        left: 0 !important;
+        padding: 0 20px !important;
+        max-width: 100% !important;
+        z-index: 2 !important;
+    }
+    .hero-eyebrow {
+        font-size: 12px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 12px !important;
+    }
+    .hero h1 { margin-bottom: 16px !important; }
+    .hero h1 .italic {
+        font-size: 24px !important;
+        display: block !important;
+    }
+    .hero h1 .bold {
+        font-size: 42px !important;
+        line-height: 1.1 !important;
+        display: block !important;
+    }
+    .hero p {
+        font-size: 14px !important;
+        max-width: 90% !important;
+        line-height: 1.6 !important;
+        margin-bottom: 24px !important;
+    }
+    .hero-buttons {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    .hero-buttons .btn {
+        width: 100% !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+        letter-spacing: 2px !important;
+        padding: 0 !important;
+    }
+    .hero-buttons .btn-primary {
+        background: var(--beige) !important;
+        color: var(--wine) !important;
+    }
+    .hero-buttons .btn-outline {
+        background: transparent !important;
+        border: 1px solid var(--beige-light) !important;
+        color: var(--beige-light) !important;
+    }
+    .scroll-indicator { left: 20px !important; bottom: 24px !important; }
+    
+    /* RESPONSIVE FIX: Mobile category section */
+    .categories { padding: 48px 16px !important; }
+    .section-header { margin-bottom: 32px !important; }
+    .section-header h2 {
+        font-size: 28px !important;
+        margin-bottom: 12px !important;
+    }
+    .section-header p {
+        font-size: 14px !important;
+        max-width: 90% !important;
+    }
+    .category-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    .category-card {
+        aspect-ratio: 4/5 !important;
+        min-height: auto !important;
+    }
+    .category-card img {
+        min-height: auto !important;
+        aspect-ratio: 4/5 !important;
+    }
+    .category-label { padding: 24px !important; }
+    .category-label h3 { font-size: 22px !important; }
+    
+    /* RESPONSIVE FIX: Mobile featured products */
+    .featured { padding: 48px 16px !important; }
+    .product-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 0 !important;
+    }
+    .product-card { min-height: auto !important; }
+    .product-image-container {
+        aspect-ratio: 1 !important;
+        min-height: auto !important;
+    }
+    .product-image-container img { min-height: auto !important; }
+    .product-info { padding: 20px !important; }
+    .product-name { font-size: 18px !important; }
+    .product-category { font-size: 11px !important; }
+    
+    /* RESPONSIVE FIX: Mobile banner strip */
+    .banner-strip {
+        padding: 48px 20px !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 24px !important;
+    }
+    .banner-content h2 {
+        font-size: 28px !important;
+        margin-bottom: 12px !important;
+    }
+    .banner-content p {
+        font-size: 13px !important;
+        max-width: 100% !important;
+    }
+    .banner-btn { width: 100% !important; max-width: 280px !important; }
+    
+    /* RESPONSIVE FIX: Mobile philosophy/craft section */
+    .craft-split {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+    }
+    .craft-image {
+        min-height: 280px !important;
+        width: 100% !important;
+        background-attachment: scroll !important;
+    }
+    .craft-content {
+        padding: 40px 20px !important;
+        min-height: auto !important;
+    }
+    .craft-eyebrow {
+        font-size: 11px !important;
+        letter-spacing: 2px !important;
+        margin-bottom: 12px !important;
+    }
+    .craft-content h2 {
+        font-size: 28px !important;
+        margin-bottom: 20px !important;
+        text-align: center !important;
+    }
+    .craft-content p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+        color: var(--gray) !important;
+        text-align: center !important;
+    }
+    .craft-stats {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        margin-top: 32px !important;
+        padding-top: 32px !important;
+    }
+    .stat-item {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .stat-item::before {
+        content: 'O' !important;
+        font-family: 'Cormorant Garamond', serif !important;
+        font-size: 24px !important;
+        color: var(--wine) !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+    .stat-item h3 {
+        font-size: 36px !important;
+        margin-bottom: 4px !important;
+    }
+    .stat-item p {
+        font-size: 12px !important;
+        letter-spacing: 2px !important;
+        text-transform: uppercase !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile marquee */
+    .marquee-strip { padding: 16px 0 !important; }
+    .marquee-text span {
+        font-size: 16px !important;
+        letter-spacing: 3px !important;
+        padding: 0 16px !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile testimonials */
+    .testimonials { padding: 48px 16px !important; }
+    .testimonial-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+    .testimonial-card { padding: 28px !important; }
+    .testimonial-card blockquote {
+        font-size: 16px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile instagram */
+    .instagram { padding: 48px 16px !important; }
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile newsletter */
+    .newsletter {
+        padding: 48px 16px !important;
+        background: var(--beige-light) !important;
+    }
+    .newsletter h2 {
+        font-size: 28px !important;
+        margin-bottom: 12px !important;
+    }
+    .newsletter p {
+        font-size: 14px !important;
+        max-width: 90% !important;
+        line-height: 1.6 !important;
+        margin-bottom: 24px !important;
+    }
+    .newsletter-form {
+        flex-direction: column !important;
+        gap: 12px !important;
+        max-width: 100% !important;
+    }
+    .newsletter-form input {
+        width: 100% !important;
+        height: 48px !important;
+        font-size: 16px !important;
+        padding: 0 16px !important;
+        border: 1px solid var(--black) !important;
+    }
+    .newsletter-form button {
+        width: 100% !important;
+        height: 48px !important;
+        font-size: 14px !important;
+        letter-spacing: 2px !important;
+        background: var(--wine) !important;
+        color: var(--beige) !important;
+        border: none !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile footer */
+    .footer {
+        padding: 40px 16px !important;
+        background: var(--black) !important;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+        margin-bottom: 32px !important;
+        text-align: center !important;
+    }
+    .footer-brand {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-brand img {
+        height: 60px !important;
+        margin-bottom: 16px !important;
+    }
+    .footer-brand h3 {
+        font-size: 18px !important;
+        letter-spacing: 6px !important;
+        margin-bottom: 12px !important;
+    }
+    .footer-brand p {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+        max-width: 90% !important;
+        color: rgba(217, 200, 176, 0.7) !important;
+        margin-bottom: 20px !important;
+    }
+    .footer-social {
+        justify-content: center !important;
+        gap: 16px !important;
+    }
+    .footer-social a {
+        width: 44px !important;
+        height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    .footer-column h4 {
+        font-size: 12px !important;
+        letter-spacing: 3px !important;
+        margin-bottom: 16px !important;
+        margin-top: 8px !important;
+    }
+    .footer-column ul {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-column a {
+        font-size: 14px !important;
+        padding: 8px 0 !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding-top: 24px !important;
+        gap: 12px !important;
+    }
+    .footer-bottom p {
+        font-size: 12px !important;
+        color: #666 !important;
+    }
+    
+    /* RESPONSIVE FIX: Mobile modal */
+    .modal-content {
+        grid-template-columns: 1fr !important;
+        width: 95% !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+    .modal-details { padding: 24px !important; }
+    .modal-details h2 { font-size: 24px !important; }
+    
+    /* RESPONSIVE FIX: Mobile search overlay */
+    .search-input { font-size: 24px !important; }
+    .search-close { top: -50px !important; font-size: 28px !important; }
+}
+
+/* Small Mobile (below 480px) */
+@media screen and (max-width: 479px) {
+    /* RESPONSIVE FIX: Small mobile header */
+    .navbar { 
+        padding: 0 12px !important; 
+        height: 64px !important;
+    }
+    .nav-logo, .nav-logo-img { height: 40px !important; }
+    .nav-icons { gap: 10px !important; }
+    .nav-icon { width: 22px !important; height: 22px !important; }
+    .hamburger { width: 22px !important; height: 22px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile menu */
+    .mobile-menu { padding: 70px 16px !important; }
+    .mobile-menu a {
+        font-size: 18px !important;
+        padding: 14px 0 !important;
+    }
+    .mobile-menu-close {
+        width: 22px !important;
+        height: 22px !important;
+        top: 20px !important;
+        right: 20px !important;
+    }
+    
+    /* RESPONSIVE FIX: Small mobile announcement */
+    .marquee-item { 
+        font-size: 10px !important; 
+        letter-spacing: 1px !important;
+        padding: 0 16px !important;
+    }
+    
+    /* RESPONSIVE FIX: Small mobile hero */
+    .hero {
+        min-height: 550px !important;
+    }
+    .hero-content {
+        bottom: 70px !important;
+        padding: 0 16px !important;
+    }
+    .hero-eyebrow {
+        font-size: 11px !important;
+        letter-spacing: 2px !important;
+    }
+    .hero h1 .italic { font-size: 20px !important; }
+    .hero h1 .bold { font-size: 36px !important; }
+    .hero p {
+        font-size: 13px !important;
+        max-width: 100% !important;
+        line-height: 1.6 !important;
+    }
+    .hero-buttons .btn {
+        height: 44px !important;
+        font-size: 13px !important;
+        letter-spacing: 1.5px !important;
+    }
+    .scroll-indicator { left: 16px !important; }
+    .scroll-indicator .dot { width: 6px !important; height: 6px !important; }
+    .scroll-indicator .line { height: 30px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile sections */
+    .categories, .featured, .testimonials, .instagram, .newsletter { 
+        padding: 40px 12px !important; 
+    }
+    .section-header h2 { font-size: 24px !important; }
+    .section-header p { font-size: 13px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile category cards */
+    .category-grid { gap: 16px !important; }
+    .category-label { padding: 20px !important; }
+    .category-label span { font-size: 10px !important; }
+    .category-label h3 { font-size: 20px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile products */
+    .product-grid { gap: 16px !important; }
+    .product-info { padding: 16px !important; }
+    .product-name { font-size: 16px !important; }
+    .product-category { font-size: 10px !important; }
+    .btn-whatsapp { font-size: 11px !important; padding: 12px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile banner */
+    .banner-strip { padding: 40px 16px !important; }
+    .banner-content h2 { font-size: 24px !important; }
+    .banner-content p { font-size: 12px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile craft/philosophy */
+    .craft-image { min-height: 240px !important; }
+    .craft-content { padding: 32px 16px !important; }
+    .craft-eyebrow { font-size: 10px !important; }
+    .craft-content h2 { font-size: 24px !important; }
+    .craft-content p { font-size: 14px !important; }
+    .stat-item h3 { font-size: 32px !important; }
+    .stat-item p { font-size: 11px !important; }
+    .stat-item::before { font-size: 20px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile marquee */
+    .marquee-strip { padding: 12px 0 !important; }
+    .marquee-text span {
+        font-size: 14px !important;
+        letter-spacing: 2px !important;
+        padding: 0 12px !important;
+    }
+    
+    /* RESPONSIVE FIX: Small mobile testimonials */
+    .testimonial-card { padding: 24px !important; }
+    .testimonial-stars { font-size: 14px !important; margin-bottom: 16px !important; }
+    .testimonial-card blockquote {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 16px !important;
+    }
+    .testimonial-author { font-size: 11px !important; }
+    
+    /* RESPONSIVE FIX: Small mobile instagram */
+    .instagram-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+    }
+    
+    /* RESPONSIVE FIX: Small mobile newsletter */
+    .newsletter { padding: 40px 12px !important; }
+    .newsletter h2 { font-size: 24px !important; }
+    .newsletter p { font-size: 13px !important; }
+    .newsletter-form input, .newsletter-form button {
+        height: 44px !important;
+        font-size: 16px !important;
+    }
+    
+    /* RESPONSIVE FIX: Small mobile footer */
+    .footer { padding: 32px 12px !important; }
+    .footer-brand img { height: 50px !important; }
+    .footer-brand h3 { font-size: 16px !important; letter-spacing: 4px !important; }
+    .footer-brand p { font-size: 12px !important; }
+    .footer-social a { width: 40px !important; height: 40px !important; }
+    .footer-column h4 { font-size: 11px !important; letter-spacing: 2px !important; }
+    .footer-column a { font-size: 13px !important; }
+    .footer-bottom p { font-size: 11px !important; }
+}
+
+/* ============================================
+   END RESPONSIVE STYLES
+   ============================================ */

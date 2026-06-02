@@ -312,6 +312,36 @@ function closeMobileMenu() {
     }
 }
 
+// RESPONSIVE FIX: Initialize mobile menu enhancements
+function initMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    if (!menu) return;
+    
+    // Close menu when clicking outside
+    menu.addEventListener('click', function(e) {
+        if (e.target === menu) {
+            closeMobileMenu();
+        }
+    });
+    
+    // RESPONSIVE FIX: Close menu on Escape key (already handled in keydown listener below)
+    // Touch swipe to close (left swipe)
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    menu.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    
+    menu.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        // If swiped left more than 50px, close menu
+        if (touchStartX - touchEndX > 50) {
+            closeMobileMenu();
+        }
+    }, { passive: true });
+}
+
 // ==================== SCROLL ANIMATIONS ====================
 function initScrollAnimations() {
     var fadeEls = document.querySelectorAll('.fade-up');
@@ -593,9 +623,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initStatsCounter();
     initTimelineAnimation();
     initAccordion();
+    initMobileMenu(); // RESPONSIVE FIX: Initialize mobile menu enhancements
     updateCartBadge();
     renderCartPage();
     initProductPage();
+    
+    // RESPONSIVE FIX: Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href !== '#') {
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
     
     // Search overlay click outside
     document.getElementById('searchOverlay')?.addEventListener('click', (e) => {
