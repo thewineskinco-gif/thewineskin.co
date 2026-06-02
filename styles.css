@@ -9,7 +9,7 @@
     --off-white: #FAF8F5;
     --light-gray: #E8E4DF;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 @media (pointer: coarse) { * { cursor: auto; } }
 html { scroll-behavior: smooth; }
 body { font-family: 'Jost', sans-serif; color: var(--black); background: var(--off-white); line-height: 1.6; overflow-x: hidden; }
