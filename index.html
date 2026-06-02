@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wineskin - Luxury Leather Goods</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Wineskin | Handcrafted Luxury Leather Goods — Belts, Wallets & Jackets</title>
+    <meta name="description" content="Wineskin crafts premium full-grain leather belts, wallets, and jackets. Handcrafted in India with sustainable vegetable-tanned leather. Free shipping above Rs. 5,000.">
+    <meta name="keywords" content="leather belts, leather wallets, leather jackets, handcrafted leather, full-grain leather, India">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -11,113 +13,57 @@
 </head>
 <body>
     <!-- Page Loader -->
-    <div id="loader">
+    <div id="pageLoader" class="page-loader">
         <div class="loader-text">WINESKIN</div>
     </div>
-    <script>
-        (function() {
-            var loader = document.getElementById('loader');
-            if (!loader) return;
-            var hide = function() {
-                loader.style.transition = 'opacity 0.5s ease';
-                loader.style.opacity = '0';
-                setTimeout(function() {
-                    loader.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 500);
-            };
-            setTimeout(hide, 1200);
-            window.addEventListener('load', function() { setTimeout(hide, 400); });
-        })();
-    </script>
-    <!-- CRITICAL FIX: Ensure all content visible immediately -->
-    <style>
-        .fade-up { opacity: 1 !important; transform: translateY(0) !important; }
-        section { display: block !important; min-height: 200px !important; }
-        .hero { min-height: 90vh !important; }
-        .categories, .featured { min-height: 400px !important; }
-    </style>
-    <script>
-        // Immediate failsafe: force all content visible
-        document.documentElement.classList.add('js-loading');
-        (function() {
-            // Make all fade-up elements visible immediately
-            var fadeUps = document.querySelectorAll('.fade-up');
-            for (var i = 0; i < fadeUps.length; i++) {
-                fadeUps[i].style.opacity = '1';
-                fadeUps[i].style.transform = 'translateY(0)';
-            }
-            // Secondary failsafe after 1 second
-            setTimeout(function() {
-                var allFadeUps = document.querySelectorAll('.fade-up');
-                for (var j = 0; j < allFadeUps.length; j++) {
-                    allFadeUps[j].style.opacity = '1';
-                    allFadeUps[j].style.transform = 'translateY(0)';
-                    allFadeUps[j].classList.add('visible');
-                }
-            }, 1000);
-        })();
-    </script>
 
-    <!-- Premium Custom Cursor -->
+    <!-- Custom Cursor (Desktop Only) -->
     <div id="cursor-dot"></div>
     <div id="cursor-ring"></div>
-    
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Added to your bag ✓</div>
+
     <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
         <div class="search-container">
             <span class="search-close" onclick="closeSearch()">&times;</span>
-            <input type="text" class="search-input" placeholder="Search for products...">
+            <input type="text" class="search-input" placeholder="Search for products..." aria-label="Search products">
         </div>
     </div>
-    
-    <!-- Quick View Modal -->
-    <div class="modal-overlay" id="quickViewModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeQuickView()">&times;</button>
-            <div class="modal-image">
-                <img src="" alt="">
-            </div>
-            <div class="modal-details">
-                <h2></h2>
-                <p class="category"></p>
-                <p class="price"></p>
-                <p>Handcrafted from premium full-grain leather with attention to every detail.</p>
-                <button class="btn btn-wine add-to-bag-btn" style="width: 100%; margin-top: auto;">Add to Bag</button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Mobile Menu -->
+
+    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
-        <svg class="mobile-menu-close" onclick="closeMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
-        <a href="index.html" onclick="closeMobileMenu()">Home</a>
-        <a href="collections.html" onclick="closeMobileMenu()">Shop</a>
-        <a href="men.html" onclick="closeMobileMenu()">Belts</a>
-        <a href="wallets.html" onclick="closeMobileMenu()">Wallets</a>
-        <a href="collections.html" onclick="closeMobileMenu()">Collections</a>
-        <a href="about.html" onclick="closeMobileMenu()">About</a>
-        <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
-        <a href="about.html" onclick="closeMobileMenu()">Lookbook</a>
+        <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <nav class="mobile-menu-nav">
+            <a href="index.html" onclick="closeMobileMenu()">Home</a>
+            <a href="collections.html" onclick="closeMobileMenu()">Shop</a>
+            <a href="men.html" onclick="closeMobileMenu()">Belts</a>
+            <a href="wallets.html" onclick="closeMobileMenu()">Wallets</a>
+            <a href="collections.html" onclick="closeMobileMenu()">Jackets</a>
+            <a href="collections.html" onclick="closeMobileMenu()">Collections</a>
+            <a href="about.html" onclick="closeMobileMenu()">About</a>
+            <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
+            <a href="about.html" onclick="closeMobileMenu()">Lookbook</a>
+        </nav>
     </div>
-    
-    <!-- Toast -->
-    <div class="toast" id="toast">Added to your bag ✓</div>
-    
+
     <!-- Announcement Bar -->
     <div class="announcement-bar">
         <div class="marquee-content">
-            <span class="marquee-item">Free shipping on orders above Rs. 5,000</span>
-            <span class="marquee-item">Handcrafted in full-grain leather</span>
-            <span class="marquee-item">New Collection 2025 Now Live</span>
-            <span class="marquee-item">Vegetable-tanned full-grain leather</span>
-            <span class="marquee-item">Free shipping on orders above Rs. 5,000</span>
-            <span class="marquee-item">Handcrafted in full-grain leather</span>
-            <span class="marquee-item">New Collection 2025 Now Live</span>
-            <span class="marquee-item">Vegetable-tanned full-grain leather</span>
+            <span class="marquee-item">NEW COLLECTION 2025 NOW LIVE</span>
+            <span class="marquee-item">FREE SHIPPING ON ORDERS ABOVE RS. 5,000</span>
+            <span class="marquee-item">HANDCRAFTED IN FULL-GRAIN LEATHER</span>
+            <span class="marquee-item">VEGETABLE-TANNED FULL-GRAIN LEATHER</span>
+            <span class="marquee-item">NEW COLLECTION 2025 NOW LIVE</span>
+            <span class="marquee-item">FREE SHIPPING ON ORDERS ABOVE RS. 5,000</span>
+            <span class="marquee-item">HANDCRAFTED IN FULL-GRAIN LEATHER</span>
+            <span class="marquee-item">VEGETABLE-TANNED FULL-GRAIN LEATHER</span>
         </div>
     </div>
 
@@ -131,9 +77,6 @@
                     <a href="men.html">Classic Tan</a>
                     <a href="men.html">Formal Black</a>
                     <a href="men.html">Braided</a>
-                    <a href="men.html">Double Tour</a>
-                    <a href="men.html">Reversible</a>
-                    <a href="men.html">Casual Brown</a>
                 </div>
             </div>
             <div class="nav-item">
@@ -143,49 +86,43 @@
                     <a href="wallets.html">Bifold</a>
                     <a href="wallets.html">Trifold</a>
                     <a href="wallets.html">Zip Around</a>
-                    <a href="wallets.html">Card Holder</a>
-                    <a href="wallets.html">Money Clip</a>
-                    <a href="wallets.html">Long Wallet</a>
                 </div>
             </div>
             <div class="nav-item">
                 <a href="collections.html" class="nav-link">Jackets</a>
-                <div class="dropdown">
-                    <div class="dropdown-title">Jackets</div>
-                    <a href="collections.html">Biker (Coming Soon)</a>
-                    <a href="collections.html">Racer (Coming Soon)</a>
-                    <a href="collections.html">Bomber (Coming Soon)</a>
-                    <a href="collections.html">Moto (Coming Soon)</a>
-                </div>
             </div>
         </div>
         <div class="nav-center">
-            <a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo"></a>
+            <a href="index.html"><img src="logo.png" alt="Wineskin" class="nav-logo" loading="eager"></a>
         </div>
         <div class="nav-right">
-            <a href="collections.html" class="nav-link">Collections</a>
-            <a href="about.html" class="nav-link">About</a>
+            <a href="collections.html" class="nav-link desktop-only">Collections</a>
+            <a href="about.html" class="nav-link desktop-only">About</a>
             <div class="nav-icons">
-                <svg class="nav-icon" onclick="openSearch()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
-                <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20Wineskin%20products." target="_blank" aria-label="WhatsApp">
-                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <button class="nav-icon" onclick="openSearch()" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <a href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20interested%20in%20Wineskin%20products." target="_blank" class="nav-icon" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                     </svg>
                 </a>
-                <svg class="nav-icon hamburger" onclick="openMobileMenu()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
+                <button class="nav-icon hamburger" onclick="openMobileMenu()" aria-label="Open menu">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
-    
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="hero">
         <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=80');"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -196,7 +133,7 @@
             </h1>
             <p>Handcrafted from full-grain leather, aged to perfection. Each piece is a testament to the art of slow craftsmanship, designed to accompany you through life's most meaningful moments.</p>
             <div class="hero-buttons">
-                <a href="collections.html" class="btn btn-primary btn-underline">Shop Now</a>
+                <a href="collections.html" class="btn btn-primary">Shop Now</a>
                 <a href="about.html" class="btn btn-outline">View Lookbook</a>
             </div>
         </div>
@@ -205,7 +142,7 @@
             <div class="line"></div>
         </div>
     </section>
-    
+
     <!-- Categories Section -->
     <section class="categories" id="categories">
         <div class="section-header fade-up">
@@ -213,34 +150,34 @@
             <div class="section-divider"></div>
             <p>Explore our curated collection of handcrafted leather goods, each designed to age beautifully with time and become a cherished companion.</p>
         </div>
-        <div class="category-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1200px;">
-            <div class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80" alt="Belts">
+        <div class="category-grid">
+            <a href="men.html" class="category-card fade-up">
+                <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80" alt="Brown leather belt with brass buckle" loading="lazy">
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Shop</span>
                     <h3>Belts</h3>
                 </div>
-                <a href="men.html" class="category-btn">Shop Now &rarr;</a>
-            </div>
-            <div class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Wallets">
+                <span class="category-btn">Shop Now &rarr;</span>
+            </a>
+            <a href="wallets.html" class="category-card fade-up">
+                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Tan leather bifold wallet" loading="lazy">
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Shop</span>
                     <h3>Wallets</h3>
                 </div>
-                <a href="wallets.html" class="category-btn">Shop Now &rarr;</a>
-            </div>
-            <div class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80" alt="Jackets">
+                <span class="category-btn">Shop Now &rarr;</span>
+            </a>
+            <a href="collections.html" class="category-card fade-up">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80" alt="Black leather jacket" loading="lazy">
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Coming Soon</span>
                     <h3>Jackets</h3>
                 </div>
-                <a href="collections.html" class="category-btn">View &rarr;</a>
-            </div>
+                <span class="category-btn">View &rarr;</span>
+            </a>
         </div>
     </section>
 
@@ -252,81 +189,10 @@
             <p>Handcrafted leather belts, wallets, and jackets — each designed to age beautifully and last a lifetime.</p>
         </div>
         <div class="product-grid">
-            <!-- 3 Belts -->
-            <div class="product-card fade-up" data-category="Belts">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80" alt="Classic Tan Belt">
-                    <span class="product-badge">Bestseller</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Classic Tan Belt</h3>
-                    <p class="product-category">Full-grain vegetable tanned</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Classic%20Tan%20Belt%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
-            <div class="product-card fade-up" data-category="Belts">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=600&q=80" alt="Formal Black Belt">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Formal Black Belt</h3>
-                    <p class="product-category">Sleek full-grain leather</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Formal%20Black%20Belt%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
-            <div class="product-card fade-up" data-category="Belts">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="Braided Leather Belt">
-                    <span class="product-badge">New</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Braided Leather Belt</h3>
-                    <p class="product-category">Hand-braided cognac</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Braided%20Leather%20Belt%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
-            <!-- 3 Wallets -->
-            <div class="product-card fade-up" data-category="Wallets">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Slim Bifold">
-                    <span class="product-badge">Popular</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Slim Bifold</h3>
-                    <p class="product-category">Minimalist, 6 card slots</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Slim%20Bifold%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
-            <div class="product-card fade-up" data-category="Wallets">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=600&q=80" alt="Classic Trifold">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Classic Trifold</h3>
-                    <p class="product-category">Spacious with coin pocket</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Classic%20Trifold%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
-            <div class="product-card fade-up" data-category="Wallets">
-                <div class="product-image-container">
-                    <img src="https://images.unsplash.com/photo-1606503825008-909a6184ad62?w=600&q=80" alt="Zip Around Wallet">
-                    <span class="product-badge">Premium</span>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">Zip Around Wallet</h3>
-                    <p class="product-category">Full-zip, 12 card slots</p>
-                    <p class="enquire-text">Enquire for Price</p>
-                    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20the%20Zip%20Around%20Wallet%20from%20Wineskin.%20Please%20share%20more%20details." target="_blank" class="btn btn-whatsapp" style="width: 100%; padding: 14px; font-size: 12px;"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Enquire on WhatsApp</a>
-                </div>
-            </div>
+            <!-- Products will be inserted here via JS for cleaner HTML -->
         </div>
     </section>
-    
+
     <!-- Banner Strip -->
     <section class="banner-strip" id="craft">
         <div class="banner-content fade-up">
@@ -335,8 +201,8 @@
         </div>
         <a href="#philosophy" class="btn banner-btn fade-up">Explore the Craft</a>
     </section>
-    
-    <!-- Craft/About Split Section -->
+
+    <!-- Craft/Philosophy Split Section -->
     <section class="craft-split" id="philosophy">
         <div class="craft-image" style="background-image: url('https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=900&q=80');"></div>
         <div class="craft-content">
@@ -346,43 +212,42 @@
             <p class="fade-up">Our leather is sourced from sustainable tanneries and aged naturally, developing a unique patina that tells your story over time. This is not fast fashion, this is heritage made tangible.</p>
             <div class="craft-stats">
                 <div class="stat-item fade-up">
-                    <h3 class="stat-years">0</h3>
+                    <span class="stat-icon">O</span>
+                    <h3 class="stat-years" data-target="15">0</h3>
                     <p>Years of Craft</p>
                 </div>
                 <div class="stat-item fade-up">
-                    <h3 class="stat-grain">0</h3>
-                    <p>Full-Grain</p>
+                    <span class="stat-icon">O</span>
+                    <h3 class="stat-grain" data-target="100">0</h3>
+                    <p>Full-Grain %</p>
                 </div>
                 <div class="stat-item fade-up">
-                    <h3 class="stat-clients">0</h3>
+                    <span class="stat-icon">O</span>
+                    <h3 class="stat-clients" data-target="5000">0</h3>
                     <p>Happy Clients</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Marquee Strip -->
     <section class="marquee-strip">
         <div class="marquee-text">
-            <span>FULL GRAIN LEATHER</span>
+            <span>FULL-GRAIN LEATHER</span>
             <span>&middot;</span>
             <span>HANDCRAFTED</span>
             <span>&middot;</span>
-            <span>TIMELESS ELEGANCE</span>
+            <span>TIMELESS DESIGN</span>
             <span>&middot;</span>
-            <span>AGED TO PERFECTION</span>
+            <span>SUSTAINABLE</span>
             <span>&middot;</span>
-            <span>WINESKIN</span>
-            <span>&middot;</span>
-            <span>FULL GRAIN LEATHER</span>
+            <span>FULL-GRAIN LEATHER</span>
             <span>&middot;</span>
             <span>HANDCRAFTED</span>
             <span>&middot;</span>
-            <span>TIMELESS ELEGANCE</span>
+            <span>TIMELESS DESIGN</span>
             <span>&middot;</span>
-            <span>AGED TO PERFECTION</span>
-            <span>&middot;</span>
-            <span>WINESKIN</span>
+            <span>SUSTAINABLE</span>
             <span>&middot;</span>
         </div>
     </section>
@@ -397,22 +262,22 @@
         <div class="testimonial-grid">
             <div class="testimonial-card fade-up">
                 <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"The Bordeaux Tote has been my daily companion for over a year. The way the leather has developed its character is simply beautiful. Worth every rupee."</blockquote>
-                <p class="testimonial-author">Priya M. &mdash; Mumbai</p>
+                <blockquote>"The Classic Tan Belt has aged beautifully over 2 years. The patina is exactly what I wanted."</blockquote>
+                <p class="testimonial-author">RAHUL S. &mdash; DELHI</p>
             </div>
             <div class="testimonial-card fade-up">
                 <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"Finally, a brand that understands quality. My wallet still looks new after two years of daily use. The craftsmanship is evident in every stitch."</blockquote>
-                <p class="testimonial-author">Arjun S. &mdash; Delhi</p>
+                <blockquote>"Finally a wallet that fits everything without the bulk. The leather quality is unmatched."</blockquote>
+                <p class="testimonial-author">ANANYA K. &mdash; BANGALORE</p>
             </div>
             <div class="testimonial-card fade-up">
                 <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"I gifted my wife the Merlot Crossbody for our anniversary. She hasn't used any other bag since. Truly exceptional quality and design."</blockquote>
-                <p class="testimonial-author">Rehan K. &mdash; Bangalore</p>
+                <blockquote>"My Wineskin jacket gets compliments every time I wear it. Worth every rupee."</blockquote>
+                <p class="testimonial-author">VIKRAM M. &mdash; MUMBAI</p>
             </div>
         </div>
     </section>
-    
+
     <!-- Instagram Grid Section -->
     <section class="instagram">
         <div class="section-header fade-up">
@@ -420,8 +285,8 @@
             <div class="section-divider"></div>
         </div>
         <div class="instagram-grid">
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=400&q=80" alt="Instagram 1">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=400&q=80" alt="Handcrafted leather belt" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -430,76 +295,71 @@
                     </svg>
                 </div>
             </a>
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=400&q=80" alt="Instagram 2">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=400&q=80" alt="Leather wallet craftsmanship" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                 </div>
             </a>
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80" alt="Instagram 3">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&q=80" alt="Leather jacket styling" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                 </div>
             </a>
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=400&q=80" alt="Instagram 4">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=400&q=80" alt="Leather craftsmanship detail" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                 </div>
             </a>
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1611010344444-5f9e4d86a6e1?w=400&q=80" alt="Instagram 5">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80" alt="Braided leather detail" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                 </div>
             </a>
-            <a href="#" class="instagram-item fade-up">
-                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" alt="Instagram 6">
+            <a href="https://instagram.com/wineskin.co" target="_blank" class="instagram-item fade-up" aria-label="Instagram post">
+                <img src="https://images.unsplash.com/photo-1606522754091-a3bbf9ad4cb3?w=400&q=80" alt="Luxury leather goods" loading="lazy">
                 <div class="instagram-overlay">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                 </div>
             </a>
         </div>
     </section>
-    
+
     <!-- Newsletter Section -->
     <section class="newsletter" id="newsletter">
         <h2 class="fade-up">Join the Inner Circle</h2>
         <p class="fade-up">Be the first to know about new collections, exclusive offers, and stories from our workshop.</p>
-        <form class="newsletter-form fade-up" onsubmit="handleSubscribe(event)">
-            <input type="email" placeholder="Enter your email" required>
+        <form class="newsletter-form fade-up" id="newsletterForm" onsubmit="handleSubscribe(event)">
+            <input type="email" id="emailInput" placeholder="Enter your email" required aria-label="Email address">
             <button type="submit">Subscribe</button>
         </form>
-        <div class="newsletter-success" id="newsletterSuccess">Welcome to Wineskin. &check;</div>
+        <div class="newsletter-message" id="newsletterMessage"></div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <img src="logo.png" alt="Wineskin">
-                <h3>WINESKIN</h3>
+                <img src="logo.png" alt="Wineskin" loading="lazy">
+                <h3>W I N E S K I N</h3>
                 <p>Handcrafted luxury leather goods, made with patience and precision. Each piece is designed to tell your story for years to come.</p>
                 <div class="footer-social">
                     <a href="https://instagram.com/wineskin.co" target="_blank" aria-label="Instagram">
@@ -525,10 +385,10 @@
             <div class="footer-column">
                 <h4>Shop</h4>
                 <ul>
-                    <li><a href="women.html">Women's Wallets</a></li>
+                    <li><a href="wallets.html">Women's Wallets</a></li>
                     <li><a href="men.html">Men's Belts</a></li>
                     <li><a href="wallets.html">All Wallets</a></li>
-                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="collections.html">Leather Jackets</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -537,8 +397,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="about.html">Our Craft</a></li>
                     <li><a href="about.html">Sustainability</a></li>
-                    <li><a href="contact.html">Careers</a></li>
-                    <li><a href="contact.html">Store Locator</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -547,28 +406,22 @@
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="contact.html">Shipping & Returns</a></li>
                     <li><a href="about.html">Size Guide</a></li>
-                    <li><a href="about.html">Care Instructions</a></li>
                     <li><a href="contact.html">FAQs</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Wineskin Leather Goods. All rights reserved.</p>
-            <div class="footer-bottom-links">
-                <a href="about.html">Privacy Policy</a>
-                <a href="about.html">Terms</a>
-                <a href="index.html">Sitemap</a>
-            </div>
+            <p>&copy; 2025 Wineskin. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/919XXXXXXXXX?text=Hi%2C%20I%20am%20interested%20in%20Wineskin%20products." target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/919876543210?text=Hi%2C%20I%20am%20interested%20in%20Wineskin%20products." target="_blank" class="floating-whatsapp" aria-label="Chat on WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
     </a>
 
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
