@@ -41,15 +41,11 @@
             </svg>
         </button>
         <nav class="mobile-menu-nav">
-            <a href="index.html" onclick="closeMobileMenu()">Home</a>
-            <a href="collections.html" onclick="closeMobileMenu()">Shop</a>
-            <a href="men.html" onclick="closeMobileMenu()">Belts</a>
-            <a href="wallets.html" onclick="closeMobileMenu()">Wallets</a>
             <a href="collections.html" onclick="closeMobileMenu()">Jackets</a>
-            <a href="collections.html" onclick="closeMobileMenu()">Collections</a>
+            <a href="wallets.html" onclick="closeMobileMenu()">Wallets</a>
+            <a href="men.html" onclick="closeMobileMenu()">Belts</a>
             <a href="about.html" onclick="closeMobileMenu()">About</a>
             <a href="contact.html" onclick="closeMobileMenu()">Contact</a>
-            <a href="about.html" onclick="closeMobileMenu()">Lookbook</a>
         </nav>
     </div>
 
@@ -78,38 +74,14 @@
                 </svg>
                 <span class="nav-wordmark">WINESKIN</span>
             </a>
-            <div class="nav-item">
-                <a href="men.html" class="nav-link">Belts</a>
-                <div class="dropdown">
-                    <div class="dropdown-title">Belts</div>
-                    <a href="men.html">Classic Tan</a>
-                    <a href="men.html">Formal Black</a>
-                    <a href="men.html">Braided</a>
-                </div>
-            </div>
-            <div class="nav-item">
-                <a href="wallets.html" class="nav-link">Wallets</a>
-                <div class="dropdown">
-                    <div class="dropdown-title">Wallets</div>
-                    <a href="wallets.html">Bifold</a>
-                    <a href="wallets.html">Trifold</a>
-                    <a href="wallets.html">Zip Around</a>
-                </div>
-            </div>
-            <div class="nav-item">
-                <a href="collections.html" class="nav-link">Jackets</a>
-            </div>
+            <a href="collections.html" class="nav-link">Jackets</a>
+            <a href="wallets.html" class="nav-link">Wallets</a>
+            <a href="men.html" class="nav-link">Belts</a>
         </div>
         <div class="nav-right">
-            <a href="collections.html" class="nav-link desktop-only">Collections</a>
-            <a href="about.html" class="nav-link desktop-only">About</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="contact.html" class="nav-link">Contact</a>
             <div class="nav-icons">
-                <button class="nav-icon" onclick="openSearch()" aria-label="Search">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                </button>
                 <a href="https://wa.me/919831236262?text=Hi%2C%20I%20am%20interested%20in%20Wineskin%20products." target="_blank" class="nav-icon" aria-label="WhatsApp">
                     <svg viewBox="0 0 24 24" fill="currentColor">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
@@ -126,232 +98,80 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Coming Soon -->
-    <section class="hero-carousel coming-soon-hero" id="hero">
-        <div class="hero-carousel-overlay"></div>
-        <div class="hero-content" style="position: relative; z-index: 2;">
-            <p class="hero-eyebrow">New Collection 2025</p>
-            <h1>
-                <span class="italic">It is officially</span>
-                <span class="bold">Leather Season</span>
-            </h1>
-            <p>Handcrafted from full-grain leather, aged to perfection. Each piece is a testament to the art of slow craftsmanship, designed to accompany you through life's most meaningful moments.</p>
-            <div class="hero-buttons">
-                <a href="collections.html" class="btn btn-primary">Shop Now</a>
-                <a href="about.html" class="btn btn-outline">View Lookbook</a>
-            </div>
-        </div>
-        <div class="scroll-indicator" style="z-index: 2;">
-            <div class="dot"></div>
-            <div class="line"></div>
+    <!-- Hero Section -->
+    <section class="hero-simple" id="hero">
+        <div class="hero-content">
+            <h1>It is officially Leather Season</h1>
+            <p>Handcrafted from full-grain leather, aged to perfection.</p>
+            <a href="collections.html" class="btn btn-primary">SHOP NOW</a>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories" id="categories">
-        <div class="section-header fade-up">
-            <h2>Shop by Category</h2>
-            <div class="section-divider"></div>
-            <p>Explore our curated collection of handcrafted leather goods, each designed to age beautifully with time and become a cherished companion.</p>
-        </div>
-        <div class="category-grid">
-            <a href="men.html" class="category-card fade-up">
+    <!-- Three Product Categories -->
+    <section class="simple-categories" id="categories">
+        <div class="simple-category-grid">
+            <a href="collections.html" class="simple-category-card">
                 <div class="coming-soon-placeholder"></div>
-                <div class="category-overlay"></div>
-                <div class="category-label">
-                    <span>Shop</span>
-                    <h3>Belts</h3>
-                </div>
-                <span class="category-btn">Shop Now &rarr;</span>
+                <h3>LEATHER JACKETS</h3>
+                <span class="explore-link">EXPLORE →</span>
             </a>
-            <a href="wallets.html" class="category-card fade-up">
+            <a href="wallets.html" class="simple-category-card">
                 <div class="coming-soon-placeholder"></div>
-                <div class="category-overlay"></div>
-                <div class="category-label">
-                    <span>Shop</span>
-                    <h3>Wallets</h3>
-                </div>
-                <span class="category-btn">Shop Now &rarr;</span>
+                <h3>WALLETS</h3>
+                <span class="explore-link">EXPLORE →</span>
             </a>
-            <a href="collections.html" class="category-card fade-up">
+            <a href="men.html" class="simple-category-card">
                 <div class="coming-soon-placeholder"></div>
-                <div class="category-overlay"></div>
-                <div class="category-label">
-                    <span>Coming Soon</span>
-                    <h3>Jackets</h3>
-                </div>
-                <span class="category-btn">View &rarr;</span>
+                <h3>BELTS</h3>
+                <span class="explore-link">EXPLORE →</span>
             </a>
         </div>
     </section>
 
-    <!-- Featured Products Section -->
-    <section class="featured" id="featured">
-        <div class="section-header fade-up">
-            <h2>Our Collection</h2>
-            <div class="section-divider"></div>
-            <p>Handcrafted leather belts, wallets, and jackets — each designed to age beautifully and last a lifetime.</p>
-        </div>
-        <div class="product-grid">
-            <!-- Products will be inserted here via JS for cleaner HTML -->
-        </div>
-    </section>
-
-    <!-- Banner Strip -->
-    <section class="banner-strip" id="craft">
-        <div class="banner-content fade-up">
-            <h2>Crafted to <em>Last a Lifetime</em></h2>
-            <p>Every piece tells a story of patience, skill, and the enduring beauty of full-grain leather. Our artisans spend hours perfecting each stitch.</p>
-        </div>
-        <a href="#philosophy" class="btn banner-btn fade-up">Explore the Craft</a>
-    </section>
-
-    <!-- Craft/Philosophy Split Section -->
-    <section class="craft-split" id="philosophy">
-        <div class="craft-image coming-soon-bg"></div>
-        <div class="craft-content">
-            <p class="craft-eyebrow fade-up">Our Philosophy</p>
-            <h2 class="fade-up">Since 1892 — Leather is Everything</h2>
-            <p class="fade-up">Wineskin was born in India in 1892 — not as a business, but as a belief. A belief that leather, when treated with patience and reverence, becomes more than material. It becomes memory.</p>
-            <p class="fade-up">For over a century, we have followed one discipline: full-grain leather, hand-selected, vegetable-tanned, and finished by craftsmen who have inherited this knowledge across generations. Every belt, wallet, and jacket carries 130 years of understanding — of knowing how leather breathes, how it yields, how it learns the shape of the person who wears it.</p>
-            <div class="craft-stats">
-                <div class="stat-item fade-up">
-                    <span class="stat-icon">O</span>
-                    <h3>133</h3>
-                    <p>Years of Craft</p>
-                </div>
-                <div class="stat-item fade-up">
-                    <span class="stat-icon">O</span>
-                    <h3>100%</h3>
-                    <p>Full-Grain %</p>
-                </div>
-                <div class="stat-item fade-up">
-                    <span class="stat-icon">O</span>
-                    <h3>500+</h3>
-                    <p>Happy Clients</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Marquee Strip -->
-    <section class="marquee-strip">
-        <div class="marquee-text">
-            <span>FULL-GRAIN LEATHER</span>
-            <span>&middot;</span>
-            <span>HANDCRAFTED</span>
-            <span>&middot;</span>
-            <span>TIMELESS DESIGN</span>
-            <span>&middot;</span>
-            <span>SUSTAINABLE</span>
-            <span>&middot;</span>
-            <span>FULL-GRAIN LEATHER</span>
-            <span>&middot;</span>
-            <span>HANDCRAFTED</span>
-            <span>&middot;</span>
-            <span>TIMELESS DESIGN</span>
-            <span>&middot;</span>
-            <span>SUSTAINABLE</span>
-            <span>&middot;</span>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-header fade-up">
-            <h2>What Our Clients Say</h2>
-            <div class="section-divider"></div>
-            <p>Stories from those who have made Wineskin a part of their journey.</p>
-        </div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card fade-up">
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"The Classic Tan Belt has aged beautifully over 2 years. The patina is exactly what I wanted."</blockquote>
-                <p class="testimonial-author">RAHUL S. &mdash; DELHI</p>
-            </div>
-            <div class="testimonial-card fade-up">
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"Finally a wallet that fits everything without the bulk. The leather quality is unmatched."</blockquote>
-                <p class="testimonial-author">ANANYA K. &mdash; BANGALORE</p>
-            </div>
-            <div class="testimonial-card fade-up">
-                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <blockquote>"My Wineskin jacket gets compliments every time I wear it. Worth every rupee."</blockquote>
-                <p class="testimonial-author">VIKRAM M. &mdash; MUMBAI</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter" id="newsletter">
-        <h2 class="fade-up">Join the Inner Circle</h2>
-        <p class="fade-up">Be the first to know about new collections, exclusive offers, and stories from our workshop.</p>
-        <form class="newsletter-form fade-up" id="newsletterForm" onsubmit="handleSubscribe(event)">
-            <input type="email" id="emailInput" placeholder="Enter your email" required aria-label="Email address">
-            <button type="submit">Subscribe</button>
-        </form>
-        <div class="newsletter-message" id="newsletterMessage"></div>
+    <!-- About Strip -->
+    <section class="about-strip">
+        <p>Since 1892 — Handcrafted in India. Leather is everything.</p>
+        <a href="about.html" class="btn btn-outline">OUR STORY →</a>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <img src="logo-new.png" alt="Wineskin" loading="lazy">
-                <h3>W I N E S K I N</h3>
-                <p>Handcrafted luxury leather goods, made with patience and precision. Each piece is designed to tell your story for years to come.</p>
-                <div class="footer-social">
-                    <a href="https://instagram.com/wineskin.co" target="_blank" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                    </a>
-                    <a href="https://pinterest.com/wineskin" target="_blank" aria-label="Pinterest">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M8.56 12.94c.56-2.45 2.12-4.63 4.44-5.44 2.32-.81 4.91.12 6.12 2.22"></path>
-                        </svg>
-                    </a>
-                    <a href="https://facebook.com/wineskin" target="_blank" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-column">
-                <h4>Shop</h4>
-                <ul>
-                    <li><a href="wallets.html">Wallets</a></li>
-                    <li><a href="men.html">Men's Belts</a></li>
-                    <li><a href="wallets.html">All Wallets</a></li>
-                    <li><a href="collections.html">Leather Jackets</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="about.html">Our Craft</a></li>
-                    <li><a href="about.html">Sustainability</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Help</h4>
-                <ul>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="contact.html">Shipping & Returns</a></li>
-                    <li><a href="about.html">Size Guide</a></li>
-                    <li><a href="contact.html">FAQs</a></li>
-                </ul>
-            </div>
+    <footer class="footer-simple">
+        <a href="index.html" class="footer-brand">
+            <svg class="nav-logo-svg" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 34 L14 22" />
+                <path d="M14 22 Q4 18 4 8 Q4 4 8 2" />
+                <path d="M14 22 Q24 18 24 8 Q24 4 20 2" />
+            </svg>
+            <span class="nav-wordmark">WINESKIN</span>
+        </a>
+        <div class="footer-links">
+            <a href="collections.html">Jackets</a>
+            <span class="dot">·</span>
+            <a href="wallets.html">Wallets</a>
+            <span class="dot">·</span>
+            <a href="men.html">Belts</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Wineskin. All rights reserved.</p>
+        <div class="footer-social">
+            <a href="https://instagram.com/wineskin.co" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://pinterest.com/wineskin" target="_blank" aria-label="Pinterest">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M8.56 12.94c.56-2.45 2.12-4.63 4.44-5.44 2.32-.81 4.91.12 6.12 2.22"></path>
+                </svg>
+            </a>
+            <a href="https://facebook.com/wineskin" target="_blank" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+            </a>
         </div>
+        <p class="footer-copyright">&copy; 2025 Wineskin. All rights reserved.</p>
     </footer>
 
     <!-- Floating WhatsApp Button -->
