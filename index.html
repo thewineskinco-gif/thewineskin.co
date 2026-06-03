@@ -122,11 +122,24 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1920&q=80');"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
+    <!-- Hero Section with Carousel -->
+    <section class="hero-carousel" id="hero" 
+             role="region" 
+             aria-roledescription="carousel" 
+             aria-label="Hero image carousel"
+             data-hero-carousel
+             data-slides='[
+               {"src":"images/hero-carousel/webp/Father%27s%20Day%202018-1920.webp","alt":"Father Day leather gift collection"},
+               {"src":"images/hero-carousel/webp/Leather%20So%20Luxe%2C%20It%27d%20Make%20This%20Jacket%20Jealous-1920.webp","alt":"Luxury leather jacket showcase"},
+               {"src":"images/hero-carousel/webp/Men%27s%20Genuine%20Full%20Grain%20Brown%20Leather%20Belt%2C%20Men%27s%20Stitched%20Casual%20Leather%20Belt-1920.webp","alt":"Men genuine full grain brown leather belt"},
+               {"src":"images/hero-carousel/webp/Pick%20Your%20Poison_%20%E2%9A%A1%EF%B8%8FOne%20Jacket%2C%20Three%20Ways-1920.webp","alt":"Versatile leather jacket styling"},
+               {"src":"images/hero-carousel/webp/Product%20Photoshoot%20for%20USA%20Made%20Leather%20Belt%20Company%20%E2%80%94%20Katya%20Vilchyk%20Atlanta%20Branding%20Photographer%20(1)-1920.webp","alt":"USA made leather belt product photography"},
+               {"src":"images/hero-carousel/webp/Product%20Photoshoot%20for%20USA%20Made%20Leather%20Belt%20Company%20%E2%80%94%20Katya%20Vilchyk%20Atlanta%20Branding%20Photographer-1920.webp","alt":"Premium leather belt craftsmanship"},
+               {"src":"images/hero-carousel/webp/The%20Best%20Premium%20Wallets%20For%20Men%20-%20Style%2C___-1920.webp","alt":"Premium leather wallets for men"},
+               {"src":"images/hero-carousel/webp/Vegetable%20tanned%20cowhide%20leather%20belt%2C%20men%27s%20belt-1920.webp","alt":"Vegetable tanned cowhide leather belt"}
+             ]'>
+        <!-- Carousel content injected by JS -->
+        <div class="hero-content" style="position: relative; z-index: 2;">
             <p class="hero-eyebrow">New Collection 2025</p>
             <h1>
                 <span class="italic">It is officially</span>
@@ -138,7 +151,7 @@
                 <a href="about.html" class="btn btn-outline">View Lookbook</a>
             </div>
         </div>
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" style="z-index: 2;">
             <div class="dot"></div>
             <div class="line"></div>
         </div>
@@ -359,5 +372,6 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="hero-carousel.js"></script>
 </body>
 </html>
