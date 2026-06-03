@@ -71,7 +71,11 @@
     <nav class="navbar" id="navbar">
         <div class="nav-left">
             <a href="index.html" class="nav-brand">
-                <img src="logo-new.png" alt="Wineskin" class="nav-logo" loading="eager">
+                <svg class="nav-logo-svg" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 34 L14 22" />
+                    <path d="M14 22 Q4 18 4 8 Q4 4 8 2" />
+                    <path d="M14 22 Q24 18 24 8 Q24 4 20 2" />
+                </svg>
                 <span class="nav-wordmark">WINESKIN</span>
             </a>
             <div class="nav-item">
@@ -122,23 +126,9 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Carousel -->
-    <section class="hero-carousel" id="hero" 
-             role="region" 
-             aria-roledescription="carousel" 
-             aria-label="Hero image carousel"
-             data-hero-carousel
-             data-slides='[
-               {"src":"images/hero-carousel/Father%27s%20Day%202018-1920.webp","alt":"Father Day leather gift collection"},
-               {"src":"images/hero-carousel/Leather%20So%20Luxe%2C%20It%27d%20Make%20This%20Jacket%20Jealous-1920.webp","alt":"Luxury leather jacket showcase"},
-               {"src":"images/hero-carousel/Men%27s%20Genuine%20Full%20Grain%20Brown%20Leather%20Belt%2C%20Men%27s%20Stitched%20Casual%20Leather%20Belt-1920.webp","alt":"Men genuine full grain brown leather belt"},
-               {"src":"images/hero-carousel/Pick%20Your%20Poison_%20%E2%9A%A1%EF%B8%8FOne%20Jacket%2C%20Three%20Ways-1920.webp","alt":"Versatile leather jacket styling"},
-               {"src":"images/hero-carousel/Product%20Photoshoot%20for%20USA%20Made%20Leather%20Belt%20Company%20%E2%80%94%20Katya%20Vilchyk%20Atlanta%20Branding%20Photographer%20(1)-1920.webp","alt":"USA made leather belt product photography"},
-               {"src":"images/hero-carousel/Product%20Photoshoot%20for%20USA%20Made%20Leather%20Belt%20Company%20%E2%80%94%20Katya%20Vilchyk%20Atlanta%20Branding%20Photographer-1920.webp","alt":"Premium leather belt craftsmanship"},
-               {"src":"images/hero-carousel/The%20Best%20Premium%20Wallets%20For%20Men%20-%20Style%2C___-1920.webp","alt":"Premium leather wallets for men"},
-               {"src":"images/hero-carousel/Vegetable%20tanned%20cowhide%20leather%20belt%2C%20men%27s%20belt-1920.webp","alt":"Vegetable tanned cowhide leather belt"}
-             ]'>
-        <!-- Carousel content injected by JS -->
+    <!-- Hero Section - Coming Soon -->
+    <section class="hero-carousel coming-soon-hero" id="hero">
+        <div class="hero-carousel-overlay"></div>
         <div class="hero-content" style="position: relative; z-index: 2;">
             <p class="hero-eyebrow">New Collection 2025</p>
             <h1>
@@ -166,7 +156,7 @@
         </div>
         <div class="category-grid">
             <a href="men.html" class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&q=80" alt="Brown leather belt with brass buckle" loading="lazy">
+                <div class="coming-soon-placeholder"></div>
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Shop</span>
@@ -175,7 +165,7 @@
                 <span class="category-btn">Shop Now &rarr;</span>
             </a>
             <a href="wallets.html" class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1627123424574-724758594913?w=600&q=80" alt="Tan leather bifold wallet" loading="lazy">
+                <div class="coming-soon-placeholder"></div>
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Shop</span>
@@ -184,7 +174,7 @@
                 <span class="category-btn">Shop Now &rarr;</span>
             </a>
             <a href="collections.html" class="category-card fade-up">
-                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80" alt="Black leather jacket" loading="lazy">
+                <div class="coming-soon-placeholder"></div>
                 <div class="category-overlay"></div>
                 <div class="category-label">
                     <span>Coming Soon</span>
@@ -218,16 +208,16 @@
 
     <!-- Craft/Philosophy Split Section -->
     <section class="craft-split" id="philosophy">
-        <div class="craft-image" style="background-image: url('https://images.unsplash.com/photo-1473188588951-666fce8e7c68?w=900&q=80');"></div>
+        <div class="craft-image coming-soon-bg"></div>
         <div class="craft-content">
             <p class="craft-eyebrow fade-up">Our Philosophy</p>
-            <h2 class="fade-up">Where Leather Meets Legacy</h2>
-            <p class="fade-up">We believe in the art of slow craftsmanship. Each Wineskin piece is meticulously handcrafted by skilled artisans who understand that true luxury lies in the details. From selecting the finest full-grain hides to the final hand-stitched seam, every step is guided by a commitment to excellence.</p>
-            <p class="fade-up">Our leather is sourced from sustainable tanneries and aged naturally, developing a unique patina that tells your story over time. This is not fast fashion, this is heritage made tangible.</p>
+            <h2 class="fade-up">Since 1892 — Leather is Everything</h2>
+            <p class="fade-up">Wineskin was born in India in 1892 — not as a business, but as a belief. A belief that leather, when treated with patience and reverence, becomes more than material. It becomes memory.</p>
+            <p class="fade-up">For over a century, we have followed one discipline: full-grain leather, hand-selected, vegetable-tanned, and finished by craftsmen who have inherited this knowledge across generations. Every belt, wallet, and jacket carries 130 years of understanding — of knowing how leather breathes, how it yields, how it learns the shape of the person who wears it.</p>
             <div class="craft-stats">
                 <div class="stat-item fade-up">
                     <span class="stat-icon">O</span>
-                    <h3>40+</h3>
+                    <h3>133</h3>
                     <p>Years of Craft</p>
                 </div>
                 <div class="stat-item fade-up">
@@ -372,6 +362,5 @@
     </a>
 
     <script src="script.js"></script>
-    <script src="hero-carousel.js"></script>
 </body>
 </html>
