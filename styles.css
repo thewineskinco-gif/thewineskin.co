@@ -228,6 +228,11 @@ img { max-width: 100%; height: auto; display: block; }
   width: 28px;
   height: 36px;
   display: block;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 .nav-logo-svg path {
   stroke: #e8d5b7;
@@ -2926,4 +2931,47 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
     gap: 32px;
     padding-bottom: 48px;
   }
+}
+
+/* LOGO BACKGROUND FIXES - Remove white box behind logo */
+.logo,
+.logo img,
+.nav-logo,
+.navbar-logo,
+.logo-wrapper,
+.logo-container,
+header img,
+nav img,
+.navbar-brand,
+.site-logo,
+.nav-logo-svg {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+/* Additional logo-specific fixes */
+.navbar img[alt="Wineskin"] {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  outline: none !important;
+}
+
+.nav-left a:first-child {
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
