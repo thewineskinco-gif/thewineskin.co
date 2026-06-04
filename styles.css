@@ -1018,8 +1018,8 @@ img { max-width: 100%; height: auto; display: block; }
   outline-offset: 2px;
 }
 .newsletter-form button {
-  background: var(--cream);
-  color: var(--leather-dark);
+  background: #150005;
+  color: #ffffff;
   padding: 16px 32px;
   border: none;
   font-family: "Jost", sans-serif;
