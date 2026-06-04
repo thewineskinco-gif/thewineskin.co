@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @media (max-width: 768px) {
+            .navbar img[alt="Wineskin"] {
+                height: 40px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="loader"><div class="loader-text">WINESKIN</div></div>
@@ -46,13 +53,8 @@
     <div class="announcement-bar"><div class="marquee-content"><span class="marquee-item">NEW COLLECTION 2025 NOW LIVE</span><span class="marquee-item">FREE SHIPPING ON ORDERS ABOVE RS. 5,000</span><span class="marquee-item">HANDCRAFTED IN FULL-GRAIN LEATHER</span><span class="marquee-item">VEGETABLE-TANNED FULL-GRAIN LEATHER</span><span class="marquee-item">NEW COLLECTION 2025 NOW LIVE</span><span class="marquee-item">FREE SHIPPING ON ORDERS ABOVE RS. 5,000</span><span class="marquee-item">HANDCRAFTED IN FULL-GRAIN LEATHER</span><span class="marquee-item">VEGETABLE-TANNED FULL-GRAIN LEATHER</span></div></div>
     <nav class="navbar" id="navbar">
         <div class="nav-left">
-            <a href="index.html" class="nav-brand">
-                <svg class="nav-logo-svg" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 34 L14 22" />
-                    <path d="M14 22 Q4 18 4 8 Q4 4 8 2" />
-                    <path d="M14 22 Q24 18 24 8 Q24 4 20 2" />
-                </svg>
-                <span class="nav-wordmark">WINESKIN</span>
+            <a href="/index.html" style="display:flex; align-items:center; text-decoration:none;">
+                <img src="/logo-new.png" alt="Wineskin" style="height:56px; width:auto; display:block;">
             </a>
             <a href="collections.html" class="nav-link">Jackets</a>
             <a href="wallets.html" class="nav-link">Wallets</a>
