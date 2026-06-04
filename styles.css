@@ -2220,8 +2220,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
    ============================================ */
 
 .coming-soon-placeholder {
-  background-color: #1a0a0a;
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2236,7 +2236,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   content: '';
   width: 40px;
   height: 1px;
-  background: rgba(212, 175, 55, 0.5);
+  background: #150005;
   margin-bottom: 16px;
 }
 
@@ -2245,7 +2245,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-family: "Cormorant Garamond", serif;
   font-size: 14px;
   letter-spacing: 0.3em;
-  color: rgba(212, 175, 55, 0.7);
+  color: #150005;
   text-transform: uppercase;
 }
 
@@ -2369,7 +2369,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #150005;
+  background-color: #ffffff;
   text-align: center;
   padding: 80px 48px;
 }
@@ -2382,13 +2382,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(36px, 6vw, 64px);
   font-weight: 300;
-  color: var(--cream);
+  color: #150005;
   margin-bottom: 24px;
   line-height: 1.1;
 }
 
 .hero-simple p {
-  color: rgba(221, 208, 179, 0.8);
+  color: rgba(21, 0, 5, 0.7);
   font-size: 16px;
   margin-bottom: 32px;
 }
