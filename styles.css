@@ -4,8 +4,7 @@
   --leather-dark: #150005;
   --cream: #DDD0B3;
   --white: #FFFFFF;
-  --leather-bg: url('./leather-bg.jpg');
-  
+
   /* Legacy compatibility - mapped to new colors */
   --burgundy: #150005;
   --burgundy-dark: #150005;
@@ -45,9 +44,6 @@ img { max-width: 100%; height: auto; display: block; }
   position: fixed;
   inset: 0;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   z-index: 999999;
   display: flex;
   align-items: center;
@@ -108,9 +104,6 @@ img { max-width: 100%; height: auto; display: block; }
   bottom: 24px;
   right: 24px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   color: var(--cream);
   border: 1px solid rgba(221, 208, 179, 0.3);
   padding: 16px 24px;
@@ -155,9 +148,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Announcement Bar */
 .announcement-bar {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: 400px 400px;
-  background-repeat: repeat;
   overflow: hidden;
   height: 40px;
   display: flex;
@@ -263,9 +253,6 @@ img { max-width: 100%; height: auto; display: block; }
   top: 100%;
   left: 0;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   min-width: 220px;
   padding: 24px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
@@ -386,9 +373,6 @@ img { max-width: 100%; height: auto; display: block; }
   max-width: 400px;
   height: 100%;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   z-index: 2000;
   transition: right 0.3s ease-out;
   display: flex;
@@ -524,10 +508,7 @@ img { max-width: 100%; height: auto; display: block; }
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.85;
+  background: rgba(21, 0, 5, 0.5);
   mix-blend-mode: multiply;
 }
 .hero-content {
@@ -633,10 +614,6 @@ img { max-width: 100%; height: auto; display: block; }
 .categories {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }
 .category-grid {
   display: grid;
@@ -717,10 +694,6 @@ img { max-width: 100%; height: auto; display: block; }
 .featured {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }
 .product-grid {
   display: grid;
@@ -791,9 +764,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Banner Strip */
 .banner-strip {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   padding: 64px 80px;
   display: flex;
   justify-content: space-between;
@@ -833,9 +803,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .craft-content {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   padding: 80px 72px;
   display: flex;
   flex-direction: column;
@@ -895,9 +862,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Marquee */
 .marquee-strip {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: 400px 400px;
-  background-repeat: repeat;
   padding: 24px 0;
   overflow: hidden;
   border-top: 1px solid rgba(221, 208, 179, 0.2);
@@ -921,10 +885,6 @@ img { max-width: 100%; height: auto; display: block; }
 .testimonials {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
 }
 .testimonial-grid {
   display: grid;
@@ -971,9 +931,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Newsletter */
 .newsletter {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   padding: 72px 48px;
   text-align: center;
   border-top: 1px solid rgba(221, 208, 179, 0.2);
@@ -1042,9 +999,6 @@ img { max-width: 100%; height: auto; display: block; }
 /* Footer */
 .footer {
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   padding: 64px 80px 32px;
   border-top: 1px solid rgba(221, 208, 179, 0.2);
 }
@@ -1425,10 +1379,7 @@ input:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8;
+  background: rgba(21, 0, 5, 0.5);
   mix-blend-mode: multiply;
 }
 .collection-hero-content {
@@ -1525,10 +1476,7 @@ input:focus-visible {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.85;
+  background: rgba(21, 0, 5, 0.5);
   mix-blend-mode: multiply;
 }
 .about-hero-content {
@@ -1556,9 +1504,6 @@ input:focus-visible {
 .philosophy {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
 }
 .philosophy-grid {
   max-width: 1200px;
@@ -1586,9 +1531,6 @@ input:focus-visible {
 .timeline {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
 }
 .timeline h2 {
   font-family: "Cormorant Garamond", serif;
@@ -1664,9 +1606,6 @@ input:focus-visible {
 .stats-strip {
   padding: 80px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   border-top: 1px solid rgba(221, 208, 179, 0.2);
   border-bottom: 1px solid rgba(221, 208, 179, 0.2);
 }
@@ -1696,9 +1635,6 @@ input:focus-visible {
 .craft-section {
   padding: 100px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
 }
 .craft-section h2 {
   font-family: "Cormorant Garamond", serif;
@@ -1744,9 +1680,6 @@ input:focus-visible {
 .cta-strip {
   padding: 80px 48px;
   background-color: var(--leather-dark);
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
   text-align: center;
   border-top: 1px solid rgba(221, 208, 179, 0.2);
 }
@@ -2026,10 +1959,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   content: '';
   position: absolute;
   inset: 0;
-  background-image: var(--leather-bg);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.6;
+  background: rgba(21, 0, 5, 0.4);
   mix-blend-mode: multiply;
 }
 
