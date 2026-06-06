@@ -2306,7 +2306,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url('leather-bg.jpg');
+  background-image: url('./hero-bg.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
