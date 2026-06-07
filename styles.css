@@ -1427,7 +1427,7 @@ input:focus-visible {
     justify-content: center;
   }
   .hero-logo-icon {
-    width: 90px;
+    width: 80px;
     height: auto;
   }
   .hero-brand {
@@ -2733,7 +2733,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 }
 
 .hero-logo-icon {
-  width: 110px;
+  width: 80px;
   height: auto;
   display: block;
 }
