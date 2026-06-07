@@ -14,6 +14,37 @@
                 height: 52px !important;
             }
         }
+        /* About page enhancements */
+        .about-eyebrow {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-text p {
+            position: relative;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-text p:not(:last-of-type)::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background: rgba(0,0,0,0.15);
+        }
+        .about-signature {
+            font-style: italic;
+            margin-top: 2rem;
+            padding-top: 1rem;
+        }
+        .about-simple h1 {
+            position: relative;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +110,7 @@
             <p class="about-eyebrow">Our Story</p>
             <h1>Born from a Love for Leather</h1>
             <div class="about-text">
-                <p>The Wine Skin Co. was founded on one simple truth — that the things we carry every day should be worth carrying. We are a luxury leather goods label rooted in the heart of Indore, India, where craftsmanship is not a selling point — it is a way of life. Every decision we make, from the leather we source to the thread we stitch with, is guided by a single question: is this good enough to last a lifetime?</p>
+                <p>The Wine Skin Co. was founded on one simple truth — that the things we carry every day should be worth carrying. We are a luxury leather goods label rooted in India, where craftsmanship is not a selling point — it is a way of life. Every decision we make, from the leather we source to the thread we stitch with, is guided by a single question: is this good enough to last a lifetime?</p>
                 <p>We work exclusively with premium full-grain leather — the highest grade available, untouched by artificial correction, carrying the natural markings and grain of the hide. This is leather that breathes, ages, and tells a story. Over months and years of use, it develops a rich patina unique to its owner — a quiet record of everywhere it has been and everything it has held.</p>
                 <p>Our craftsmen bring heritage techniques to every piece — hand-stitched seams, burnished edges, carefully set hardware. There is no rushing this process. A Wine Skin product takes the time it takes, because we believe that patience is the first ingredient in quality. Each piece leaves our studio only when it meets the standard we have set — and that standard does not move.</p>
                 <p>We don't chase trends. We don't follow seasons. We craft heirlooms — objects designed to outlive the moment they were bought for. At The Wine Skin Co., we make leather goods for those who understand that true luxury is not about logos or labels. It is about the weight of something well-made in your hands. The quiet confidence of carrying something built to last.</p>
