@@ -1421,6 +1421,11 @@ input:focus-visible {
     max-width: 100%;
     width: 100%;
     padding: 0;
+    margin-top: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .hero-simple h1 {
     font-size: clamp(2rem, 8vw, 3.5rem);
@@ -2710,6 +2715,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   max-width: 600px;
   position: relative;
   z-index: 1;
+  margin-top: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-simple h1 {
@@ -3425,6 +3435,11 @@ nav img,
     width: 100%;
     padding: 0;
     text-align: center;
+    margin-top: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   .hero-simple h1 {
     font-size: clamp(2rem, 8vw, 3.5rem);
