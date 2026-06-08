@@ -4057,3 +4057,91 @@ nav img,
     margin: 0 auto;
   }
 }
+
+/* Coming Soon Block - for collections pages */
+.coming-soon-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 80px 24px;
+  text-align: center;
+}
+.cs-line {
+  width: 50px;
+  height: 1px;
+  background: #b8975a;
+  margin-bottom: 20px;
+}
+.cs-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #b8975a;
+  margin-bottom: 16px;
+}
+.cs-heading {
+  font-family: inherit;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+  color: #1a1008;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+.cs-subtext {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #6b5e52;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.cs-divider {
+  width: 30px;
+  height: 1px;
+  background: #b8975a;
+  margin-bottom: 24px;
+}
+.cs-notify {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6b5e52;
+  margin-bottom: 16px;
+}
+.cs-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: #1a1008;
+  color: #f5f0e8;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #1a1008;
+  transition: background 0.3s, color 0.3s;
+}
+.cs-whatsapp-btn:hover {
+  background: transparent;
+  color: #1a1008;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .coming-soon-block {
+    min-height: 50vh;
+    padding: 60px 20px;
+  }
+  .cs-heading {
+    font-size: 2.8rem;
+  }
+  .cs-subtext {
+    font-size: 0.9rem;
+  }
+  .cs-whatsapp-btn {
+    width: 85%;
+    justify-content: center;
+  }
+}
