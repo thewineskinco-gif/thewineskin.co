@@ -15,6 +15,67 @@
             .navbar img[alt="Wineskin"] {
                 height: 52px !important;
             }
+
+            /* --- FIX 1: HERO SECTION --- */
+            .hero-simple {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+
+            .hero-content {
+                padding-top: 30vh !important;
+            }
+
+            .hero-content .btn-primary {
+                margin-bottom: 60px !important;
+            }
+
+            .hero-content p {
+                font-size: 0.85rem;
+                text-align: center;
+                padding: 0 20px;
+            }
+
+            /* --- FIX 2: PRODUCT CATEGORIES SECTION --- */
+            .simple-category-grid {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+
+            .simple-category-card {
+                width: 100% !important;
+                margin-bottom: 16px !important;
+            }
+
+            .simple-category-card > div {
+                height: 280px !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .simple-category-card img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                object-position: center !important;
+                display: block !important;
+            }
+
+            .simple-category-card h3 {
+                font-size: 0.85rem;
+                margin-top: 12px;
+                text-align: center;
+            }
+
+            .simple-category-card .explore-link {
+                text-align: center;
+                margin-top: 6px;
+                display: block;
+            }
         }
     </style>
 </head>
