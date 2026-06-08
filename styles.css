@@ -2728,6 +2728,71 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   justify-content: center;
 }
 
+/* Desktop: Position tagline at top, button at bottom to avoid overlapping printed logo/watermark */
+@media (min-width: 769px) {
+  .hero-simple {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .hero-simple .hero-content {
+    position: static;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero-simple .hero-tagline {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .hero-simple .hero-cta {
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile: Position tagline at top, button at bottom to avoid overlapping printed logo/watermark */
+@media (max-width: 768px) {
+  .hero-simple {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .hero-simple .hero-content {
+    position: static;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+  }
+
+  .hero-simple .hero-tagline {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    text-align: center;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .hero-simple .hero-cta {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75%;
+  }
+}
+
 .hero-logo {
   margin-bottom: 24px;
 }

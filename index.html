@@ -16,30 +16,7 @@
                 height: 52px !important;
             }
 
-            /* --- FIX 1: HERO SECTION --- */
-            .hero-simple {
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-            }
-
-            .hero-content {
-                padding-top: 30vh !important;
-            }
-
-            .hero-content .btn-primary {
-                margin-bottom: 60px !important;
-            }
-
-            .hero-content p {
-                font-size: 0.85rem;
-                text-align: center;
-                padding: 0 20px;
-            }
-
-            /* --- FIX 2: PRODUCT CATEGORIES SECTION --- */
+            /* --- FIX: PRODUCT CATEGORIES SECTION --- */
             .simple-category-grid {
                 display: flex !important;
                 flex-direction: column !important;
@@ -163,9 +140,9 @@
 
     <!-- Hero Section -->
     <section class="hero-simple" id="hero">
-        <div class="hero-content" style="position: relative; z-index: 1; justify-content: flex-start; padding-top: 18vh;">
-            <p>Handcrafted from full-grain leather, aged to perfection.</p>
-            <a href="collections.html" class="btn btn-primary" style="margin-bottom: 80px;">SHOP NOW</a>
+        <div class="hero-content">
+            <p class="hero-tagline">Handcrafted from full-grain leather, aged to perfection.</p>
+            <a href="collections.html" class="btn btn-primary hero-cta">SHOP NOW</a>
         </div>
     </section>
 
